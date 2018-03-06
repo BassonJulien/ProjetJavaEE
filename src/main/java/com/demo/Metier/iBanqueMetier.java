@@ -1,4 +1,4 @@
-package com.demo.Metier;
+/*package com.demo.Metier;
 
 import java.util.List;
 
@@ -12,4 +12,4 @@ public interface iBanqueMetier {
 	public void virerArgent(Long idCompte1, Long idCompte2, double montant);
 	public List<Operation> historiqueOperation(Long idCompte);
 
-}
+}*/

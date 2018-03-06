@@ -7,18 +7,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.demo.Metier.iBanqueMetier;
-import com.demo.dao.ClientRepository;
-import com.demo.dao.CompteRepository;
-import com.demo.entities.Client;
-import com.demo.entities.Compte;
+import com.demo.dao.UserRepository;
+import com.demo.entities.User;
+
 
 @SpringBootApplication
 public class DemoSpringBanqueApplication implements CommandLineRunner{
 	@Autowired
-	private ClientRepository clientRep;
-	@Autowired
-	private CompteRepository compteRep;
+	private UserRepository userRep;
 
 
 	public static void main(String[] args) {
@@ -27,16 +23,9 @@ public class DemoSpringBanqueApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		Client c1 = clientRep.save(new Client("jbasson", "juju@yolo.fr"));
-		Client c2 = clientRep.save(new Client("lcaminale", "lolo@yolo.fr"));
 
+		User user1 = userRep.save(new User("julien", "basson", "juju@lolo.fr", "admin", "", "lolo"));
 		
-		Compte cp1 = compteRep.save(new Compte(new Date(), 6000, c1));
-		Compte cp2 = compteRep.save(new Compte(new Date(), 600, c1));
-		Compte cp3 = compteRep.save(new Compte(new Date(), 2000, c2));
-		
-		iBanqueMetier metier ;
-
 		// TODO Auto-generated method stub
 		
 	}

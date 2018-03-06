@@ -1,4 +1,4 @@
-package com.demo.Metier;
+/*package com.demo.Metier;
 
 import java.util.Date;
 import java.util.List;
@@ -59,4 +59,4 @@ public class BanqueImplements implements iBanqueMetier{
 		return null;
 	}
 
-}
+}*/
