@@ -22,7 +22,7 @@ public class IntranetController{
 	public String home(Model model )
 	{
 		model.addAttribute("profile", message) ;
-		return "home" ; 
+		return "homeLogged" ; 
 	}
 	
 	@RequestMapping("/marks")

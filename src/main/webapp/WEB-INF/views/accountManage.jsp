@@ -7,7 +7,9 @@
 <body>
 <%@ include file="navbar.jsp" %>
 
-<h1>account management</h1>
+<h1>Account management</h1>
+
+<%@ include file="newUserForm.jsp" %>
 
 
 

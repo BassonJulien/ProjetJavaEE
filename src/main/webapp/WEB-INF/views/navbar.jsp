@@ -1,62 +1,83 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<title>Intranet du turfu</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+* {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
     overflow: hidden;
     background-color: #333;
 }
 
-li {
+/* Style the topnav links */
+.topnav a {
     float: left;
-}
-
-li a {
     display: block;
-    color: white;
+    color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-li a:hover {
-    background-color: #111;
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
 }
 </style>
 </head>
 <body>
+
+<div class="header">
+  <h1>Intranet</h1>
+</div>
+
 <c:choose>
+
     <c:when test="${profile.equals('student')}">
-        <ul>
-  <li><a class="active" href="${pageContext.request.contextPath}/home">Home</a></li>
-  <li><a href="${pageContext.request.contextPath}/news">News</a></li>
-  <li><a href="${pageContext.request.contextPath}/timeTable">Time table</a></li>
-  <li><a href="${pageContext.request.contextPath}/marks">My marks</a></li>
-</ul>
-    </c:when>    
+        <div class="topnav">
+  			<a href="${pageContext.request.contextPath}/home">Home</a>
+  			<a href="${pageContext.request.contextPath}/news">News</a>
+  			<a href="${pageContext.request.contextPath}/timeTable">Time table</a>
+  			<a href="${pageContext.request.contextPath}/marks">My marks</a>
+		</div>
+    </c:when>  
+      
     <c:when test="${profile.equals('admin')}">
-        <ul>
-  <li><a class="active" href="${pageContext.request.contextPath}/home">Home</a></li>
-  <li><a href="${pageContext.request.contextPath}/newsManage">News Management</a></li>
-  <li><a href="${pageContext.request.contextPath}/accountManage">Accounts management</a></li>
-  <li><a href="${pageContext.request.contextPath}/timeTableManage">Time Table management</a></li>
-</ul>
+        <div class="topnav">
+  			<a href="${pageContext.request.contextPath}/home">Home</a>
+  			<a href="${pageContext.request.contextPath}/newsManage">News Management</a>
+  			<a href="${pageContext.request.contextPath}/timeTableManage">Time table Management</a>
+  			<a href="${pageContext.request.contextPath}/accountManage">Accounts management</a> 
+		</div>
     </c:when>
+    
      <c:when test="${profile.equals('teacher')}">
-        <ul>
-  <li><a class="active" href="${pageContext.request.contextPath}/home">Home</a></li>
-  <li><a href="${pageContext.request.contextPath}/news">News</a></li>
-  <li><a href="${pageContext.request.contextPath}/marksManage">Marks management</a></li>
-</ul>
+		<div class="topnav">
+  			<a href="${pageContext.request.contextPath}/home">Home</a>
+  			<a href="${pageContext.request.contextPath}/news">News</a>
+  			<a href="${pageContext.request.contextPath}/marksManagement">Marks management</a> 
+		</div>
     </c:when> 
+    
 </c:choose>
-
-
-
-
 </body>
 </html>

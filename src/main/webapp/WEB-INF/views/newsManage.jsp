@@ -8,6 +8,8 @@
 <%@ include file="navbar.jsp" %>
 <h1>New Management</h1>
 
+<%@ include file="newsForm.jsp" %>
+
 
 
 </body>

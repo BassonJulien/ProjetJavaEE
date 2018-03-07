@@ -36,20 +36,22 @@ input[type=submit]:hover {
 
 <div class="form">
   <form action="/action_page.php">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" placeholder="Your username..">
+    <label for="title">Titlle</label>
+    <input type="text" id="title" name="title" placeholder="title">
 
-    <label for="username">Password</label>
-    <input type="text" id="password" name="password" placeholder="Your password..">
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" placeholder="description">
 
-    <label for="profile">profile</label>
-    <select id="profile" name="profile">
-      <option value="admin">Admin</option>
-      <option value="teacher">Teacher</option>
-      <option value="strudent">Student</option>
-    </select>
-  
-    <input type="submit" value="Login">
+	<label for="image">Image URL</label>
+    <input type="text" id="image" name="image" placeholder="image">
+    
+    <input type="radio" name="active" value="active"> Active<br>
+    <br>
+    
+    Expiration date:
+    <input type="date" name="endDate">
+    
+    <input type="submit" value="Create news">
   </form>
 </div>
 
