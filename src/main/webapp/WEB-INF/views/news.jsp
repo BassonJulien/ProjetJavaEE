@@ -5,6 +5,8 @@
 
 </head>
 <body>
+<%@ include file="navbar.jsp" %>
+
 <h1>News</h1>
 
 </body>

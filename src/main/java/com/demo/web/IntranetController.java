@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IntranetController{
-	
+	public String message = "admin";
 	@RequestMapping("navbar")
 	public String navbar(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "navbar" ; 
 	}
@@ -22,7 +21,6 @@ public class IntranetController{
 	@RequestMapping("/home")
 	public String home(Model model )
 	{
-		String message = "student" ;
 		model.addAttribute("profile", message) ;
 		return "home" ; 
 	}
@@ -30,7 +28,6 @@ public class IntranetController{
 	@RequestMapping("/marks")
 	public String marks(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "marks" ; 
 	}
@@ -39,7 +36,6 @@ public class IntranetController{
 	@RequestMapping("/news")
 	public String news(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "news" ; 
 	}
@@ -47,7 +43,6 @@ public class IntranetController{
 	@RequestMapping("/timeTable")
 	public String timeTable(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "timeTable" ; 
 	}
@@ -55,7 +50,6 @@ public class IntranetController{
 	@RequestMapping("/accountManage")
 	public String accountManage(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "accountManage" ; 
 	}
@@ -63,7 +57,6 @@ public class IntranetController{
 	@RequestMapping("/marksManage")
 	public String marksManage(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "marksManage" ; 
 	}
@@ -71,7 +64,6 @@ public class IntranetController{
 	@RequestMapping("/newsManage")
 	public String newsManage(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "newsManage" ; 
 	}
@@ -79,7 +71,6 @@ public class IntranetController{
 	@RequestMapping("/timeTableManage")
 	public String timeTableManage(Model model )
 	{
-		String message = "admin" ;
 		model.addAttribute("profile", message) ;
 		return "timeTableManage" ; 
 	}

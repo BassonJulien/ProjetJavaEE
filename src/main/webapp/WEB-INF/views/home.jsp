@@ -7,6 +7,7 @@
 <body>
 <%@ include file="navbar.jsp" %>
 
+<%@ include file="loginForm.jsp" %>
 
 <h1>Home</h1>
 
