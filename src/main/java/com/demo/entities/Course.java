@@ -2,18 +2,20 @@ package com.demo.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Course {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id @GeneratedValue
-	private Long classId;
+	private Long courseId;
 	private String name;
 	
 	@ManyToOne
@@ -21,7 +23,7 @@ public class Course {
 	private Teacher teacher;
 	@ManyToOne
 	@JoinColumn(name="classId")
-	private Class classCourse;
+	private GroupClass classCourse;
 	
 
 	@OneToMany(mappedBy = "course")
@@ -54,12 +56,12 @@ public class Course {
 	}
 
 
-	public Class getClassCourse() {
+	public GroupClass getClassCourse() {
 		return classCourse;
 	}
 
 
-	public void setClassCourse(Class classCourse) {
+	public void setClassCourse(GroupClass classCourse) {
 		this.classCourse = classCourse;
 	}
 
@@ -74,7 +76,7 @@ public class Course {
 	}
 
 
-	public Course(String name, Teacher teacher, Class classCourse) {
+	public Course(String name, Teacher teacher, GroupClass classCourse) {
 		super();
 		this.name = name;
 		this.teacher = teacher;

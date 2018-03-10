@@ -2,8 +2,10 @@ package com.demo.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Class {
 	
 	private long classId;

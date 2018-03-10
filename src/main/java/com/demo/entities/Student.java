@@ -2,12 +2,14 @@ package com.demo.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Student {
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue

@@ -2,10 +2,12 @@ package com.demo.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Teacher {
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue

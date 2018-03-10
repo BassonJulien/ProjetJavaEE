@@ -1,8 +1,10 @@
 package com.demo.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class Admin {
 
 	private static final long serialVersionUID = 1L;
