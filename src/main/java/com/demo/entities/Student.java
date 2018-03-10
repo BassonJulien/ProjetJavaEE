@@ -20,7 +20,7 @@ public class Student {
 	
 	@ManyToOne
 	@JoinColumn(name="classId")
-	private Class studentClass;
+	private GroupClass studentClass;
 	
 	@OneToMany(mappedBy = "student")
 	private Collection<Mark> marks;
@@ -30,7 +30,7 @@ public class Student {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Student(String name, String username, String password, Class studentClass) {
+	public Student(String name, String username, String password, GroupClass studentClass) {
 		super();
 		this.name = name;
 		this.username = username;
@@ -62,11 +62,11 @@ public class Student {
 		this.password = password;
 	}
 
-	public Class getStudentClass() {
+	public GroupClass getStudentClass() {
 		return studentClass;
 	}
 
-	public void setStudentClass(Class studentClass) {
+	public void setStudentClass(GroupClass studentClass) {
 		this.studentClass = studentClass;
 	}
 
