@@ -3,6 +3,9 @@ package com.demo.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import java.io.Serializable;
 
 
@@ -12,35 +15,48 @@ public class Mark implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue
 	private long idMark;
-	private long idStudent;
-	private long idModule;
-	private float mark;
+	@ManyToOne
+    @JoinColumn(name = "studentId")
+    private Student student;
 	
-	public Mark(long idStudent, long idModule, float mark) {
+	@ManyToOne
+    @JoinColumn(name = "courseId")
+    private Course course;
+	
+	private float mark;
+
+	public Mark(Student student, Course course, float mark) {
 		super();
-		this.idStudent = idStudent;
-		this.idModule = idModule;
+		this.student = student;
+		this.course = course;
 		this.mark = mark;
 	}
+
 	public Mark() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public long getIdStudent() {
-		return idStudent;
+
+	public Student getStudent() {
+		return student;
 	}
-	public void setIdStudent(long idStudent) {
-		this.idStudent = idStudent;
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
-	public long getIdModule() {
-		return idModule;
+
+	public Course getCourse() {
+		return course;
 	}
-	public void setIdModule(long idModule) {
-		this.idModule = idModule;
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
+
 	public float getMark() {
 		return mark;
 	}
+
 	public void setMark(float mark) {
 		this.mark = mark;
 	}
