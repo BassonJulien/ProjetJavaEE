@@ -3,14 +3,14 @@ package com.demo.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 public class IntranetController{
-	public String message = "admin";
+	public String message = "student";
 	@RequestMapping("navbar")
 	public String navbar(Model model )
 	{
@@ -24,14 +24,7 @@ public class IntranetController{
 		model.addAttribute("profile", message) ;
 		return "homeLogged" ; 
 	}
-	
-	@RequestMapping("/marks")
-	public String marks(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "marks" ; 
-	}
-	
+		
 
 	@RequestMapping("/news")
 	public String news(Model model )
