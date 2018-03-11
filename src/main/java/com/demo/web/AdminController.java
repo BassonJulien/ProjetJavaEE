@@ -5,15 +5,47 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("admin")
+
 public class AdminController {
 	public String message = "student";
 	
-	@RequestMapping("/marks")
-	public String marks(Model model )
+
+	@RequestMapping("/")
+	public String empty(Model model )
 	{
 		model.addAttribute("profile", message) ;
-		return "marks" ; 
+		return "homeLogged" ; 
+	}
+		
+	@RequestMapping("/home")
+	public String home(Model model )
+	{
+		model.addAttribute("profile", message) ;
+		return "homeLogged" ; 
+	}
+	
+	@RequestMapping("/accountManage")
+	public String accountManage(Model model )
+	{
+		model.addAttribute("profile", message) ;
+		return "accountManage" ; 
 	}
 
+	
+	@RequestMapping("/timeTableManage")
+	public String timeTableManage(Model model )
+	{
+		model.addAttribute("profile", message) ;
+		return "timeTableManage" ; 
+	}
+	
+	@RequestMapping("/newsManage")
+	public String newsManage(Model model )
+	{
+		model.addAttribute("profile", message) ;
+		return "newsManage" ; 
+	}
+	
 
 }

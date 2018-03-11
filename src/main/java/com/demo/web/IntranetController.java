@@ -18,53 +18,18 @@ public class IntranetController{
 		return "navbar" ; 
 	}
 	
+	@RequestMapping("/")
+	public String empty(Model model )
+	{
+		model.addAttribute("profile", message) ;
+		return "homeUnlogged" ; 
+	}
+		
 	@RequestMapping("/home")
 	public String home(Model model )
 	{
 		model.addAttribute("profile", message) ;
-		return "homeLogged" ; 
+		return "homeUnlogged" ; 
 	}
 		
-
-	@RequestMapping("/news")
-	public String news(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "news" ; 
-	}
-	
-	@RequestMapping("/timeTable")
-	public String timeTable(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "timeTable" ; 
-	}
-	
-	@RequestMapping("/accountManage")
-	public String accountManage(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "accountManage" ; 
-	}
-	
-	@RequestMapping("/marksManage")
-	public String marksManage(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "marksManage" ; 
-	}
-	
-	@RequestMapping("/newsManage")
-	public String newsManage(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "newsManage" ; 
-	}
-	
-	@RequestMapping("/timeTableManage")
-	public String timeTableManage(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "timeTableManage" ; 
-	}
 }

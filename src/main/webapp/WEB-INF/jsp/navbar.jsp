@@ -54,27 +54,27 @@ body {
 
     <c:when test="${profile.equals('student')}">
         <div class="topnav">
-  			<a href="${pageContext.request.contextPath}/home">Home</a>
-  			<a href="${pageContext.request.contextPath}/news">News</a>
-  			<a href="${pageContext.request.contextPath}/timeTable">Time table</a>
-  			<a href="${pageContext.request.contextPath}/marks">My marks</a>
+  			<a href="${pageContext.request.contextPath}/student/home">Home</a>
+  			<a href="${pageContext.request.contextPath}/student/news">News</a>
+  			<a href="${pageContext.request.contextPath}/student/timeTable">Time table</a>
+  			<a href="${pageContext.request.contextPath}/student/marks">My marks</a>
 		</div>
     </c:when>  
       
     <c:when test="${profile.equals('admin')}">
         <div class="topnav">
-  			<a href="${pageContext.request.contextPath}/home">Home</a>
-  			<a href="${pageContext.request.contextPath}/newsManage">News Management</a>
-  			<a href="${pageContext.request.contextPath}/timeTableManage">Time table Management</a>
-  			<a href="${pageContext.request.contextPath}/accountManage">Accounts management</a> 
+  			<a href="${pageContext.request.contextPath}/admin/home">Home</a>
+  			<a href="${pageContext.request.contextPath}/admin/newsManage">News Management</a>
+  			<a href="${pageContext.request.contextPath}/admin/timeTableManage">Time table Management</a>
+  			<a href="${pageContext.request.contextPath}/admin/accountManage">Accounts management</a> 
 		</div>
     </c:when>
     
      <c:when test="${profile.equals('teacher')}">
 		<div class="topnav">
-  			<a href="${pageContext.request.contextPath}/home">Home</a>
-  			<a href="${pageContext.request.contextPath}/news">News</a>
-  			<a href="${pageContext.request.contextPath}/marksManagement">Marks management</a> 
+  			<a href="${pageContext.request.contextPath}/teacher/home">Home</a>
+  			<a href="${pageContext.request.contextPath}/teacher/news">News</a>
+  			<a href="${pageContext.request.contextPath}/teacher/marksManagement">Marks management</a> 
 		</div>
     </c:when> 
     
