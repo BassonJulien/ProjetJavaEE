@@ -14,8 +14,9 @@ public interface IntranetMetierInterface {
 	public void createNews(String title, String description, String image, String date, boolean isActive);
 	List<GroupClass> getGroupClassList();
 	List<News> getNewsList();
+	List<News> getLatestNewsList();
 	public void deleteNewsFromTitle(String title);
 	public News getNewsFromTitle(String title);
 	public void updateNews(Long id, String title, String description, String image, String date, boolean isActive);
-
+	
 }

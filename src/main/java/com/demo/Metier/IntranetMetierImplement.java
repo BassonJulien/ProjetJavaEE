@@ -94,4 +94,10 @@ public class IntranetMetierImplement implements IntranetMetierInterface{
 		
 	}
 
+	@Override
+	public List<News> getLatestNewsList() {
+		// TODO Auto-generated method stub
+		return newsRep.getLatestNewsList();
+	}
+
 }

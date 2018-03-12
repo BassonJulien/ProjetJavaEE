@@ -37,12 +37,24 @@ public class AdminController {
 	@RequestMapping("/")
 	public String empty(Model model) {
 		model.addAttribute("profile", message);
+		List<News> newsList = new ArrayList<>();
+		for (News news : interfaceMetier.getLatestNewsList())
+			newsList.add(news);
+		
+		model.addAttribute("news", newsList);
+
+	
 		return "homeLogged";
 	}
 
 	@RequestMapping("/home")
 	public String home(Model model) {
 		model.addAttribute("profile", message);
+		List<News> newsList = new ArrayList<>();
+		for (News news : interfaceMetier.getLatestNewsList())
+			newsList.add(news);
+		
+		model.addAttribute("news", newsList);
 		return "homeLogged";
 	}
 
@@ -140,21 +152,6 @@ public class AdminController {
 				newsValidator.getDate(), newsValidator.isActive());
 		return "redirect:/admin/newsManage";
 	}
-/*
-	@RequestMapping(value = "/sendModif", params = "delete", method = RequestMethod.POST)
-	public String action3(@RequestParam("sendModif") NewNewsFormValidator newsValidator) {
-		System.out.println(newsValidator.getTitle());
-		return "redirect:/admin/newsManage";
-	}*/
-
-	/*@RequestMapping(value = "/newsUpdate", method = RequestMethod.POST)
-	String newUpdateSent(Model model, @Valid @ModelAttribute("newsValidator") NewNewsFormValidator newsValidator,
-			BindingResult bindingResult) {
-		model.addAttribute("profile", message);
-		System.out.println("CA marcher");
-
-		return "redirect:/admin/home";
-	}*/
 
 	@RequestMapping(value = "/newsManage", method = RequestMethod.GET)
 	public String newManage(Model model) {
@@ -177,7 +174,7 @@ public class AdminController {
 		interfaceMetier.createNews(newsValidator.getTitle(), newsValidator.getDescription(), newsValidator.getImage(),
 				newsValidator.getDate(), newsValidator.isActive());
 
-		return "redirect:/admin/home";
+		return "redirect:/admin/newsManage";
 
 	}
 

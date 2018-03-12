@@ -3,11 +3,54 @@
 <html>
 <head>
 
+<style>
+#news {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#news td, #news th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#news tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#news tr:hover {
+	background-color: #ddd;
+}
+
+#news th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}
+
+</style>
 </head>
 <body>
 <%@ include file="navbar.jsp" %>
 
 <h1>News</h1>
+
+
+<table id="news">
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+			</tr>
+			<c:forEach items="${news}" var="news">
+				<tr>
+					<td>${news.title}</td>
+					<td>${news.description}</td>
+				</tr>
+			</c:forEach>
+		</table>
 
 </body>
 </html>
