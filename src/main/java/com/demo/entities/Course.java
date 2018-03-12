@@ -17,7 +17,29 @@ public class Course {
 	@Id @GeneratedValue
 	private Long courseId;
 	private String name;
+	private String day;
+	private String hours;
 	
+	public String getDay() {
+		return day;
+	}
+
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+
+	public String getHours() {
+		return hours;
+	}
+
+
+	public void setHours(String hours) {
+		this.hours = hours;
+	}
+
+
 	@ManyToOne
 	@JoinColumn(name="teacherId")
 	private Teacher teacher;
@@ -25,6 +47,11 @@ public class Course {
 	@JoinColumn(name="classId")
 	private GroupClass classCourse;
 	
+
+	public Long getCourseId() {
+		return courseId;
+	}
+
 
 	@OneToMany(mappedBy = "course")
 	private Collection<Mark> marks;	

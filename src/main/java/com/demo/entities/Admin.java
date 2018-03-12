@@ -10,6 +10,9 @@ public class Admin {
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue
 	private long idAdim;
+	public long getIdAdim() {
+		return idAdim;
+	}
 	private String name;
 	private String username;
 	private String password;

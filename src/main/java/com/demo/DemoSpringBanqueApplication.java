@@ -7,15 +7,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.demo.dao.UserRepository;
-import com.demo.entities.User;
+import com.demo.dao.*;
+import com.demo.entities.*;
+
 
 
 @SpringBootApplication
 public class DemoSpringBanqueApplication implements CommandLineRunner{
 	@Autowired
-	private UserRepository userRep;
-
+	private StudentRepository sutdentRep;
+	@Autowired
+	private TeacherRepository teacherRep;
+	@Autowired
+	private AdminRepository adminRep;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoSpringBanqueApplication.class, args);
@@ -24,8 +28,10 @@ public class DemoSpringBanqueApplication implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
 
-		User user1 = userRep.save(new User("julien", "basson", "juju@lolo.fr", "admin", "", "lolo"));
-		
+		//Student student1 = sutdentRep.save(new Student("lolo", "cam","0205", null));
+		//Teacher teacher1 = teacherRep.save(new Teacher("juju", "juju","0205", null));
+		//Admin admin1 = adminRep.save(new Admin("tom", "tom","0205"));
+
 		// TODO Auto-generated method stub
 		
 	}

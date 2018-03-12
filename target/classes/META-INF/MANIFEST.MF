@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: DemoSpringBanque
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: julien
+Built-By: camelot
 Implementation-Vendor-Id: com.demo
-Build-Jdk: 1.8.0_151
+Build-Jdk: 1.8.0_144
 Implementation-URL: http://projects.spring.io/spring-boot/DemoSpringBa
  nque/
 Created-By: Maven Integration for Eclipse
