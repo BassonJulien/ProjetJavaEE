@@ -28,11 +28,9 @@ public class GroupClass {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GroupClass(String name, Collection<Student> students, Collection<Course> courses) {
+	public GroupClass(String name) {
 		super();
 		this.name = name;
-		this.students = students;
-		this.courses = courses;
 	}
 
 	public String getName() {

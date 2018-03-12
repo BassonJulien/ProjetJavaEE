@@ -11,12 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IntranetController{
 	public String message = "student";
-	@RequestMapping("navbar")
-	public String navbar(Model model )
-	{
-		model.addAttribute("profile", message) ;
-		return "navbar" ; 
-	}
+	
 	
 	@RequestMapping("/")
 	public String empty(Model model )

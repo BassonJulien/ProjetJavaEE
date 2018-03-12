@@ -1,5 +1,9 @@
 package com.demo.dao;
 
-public interface TeacherRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.demo.entities.Teacher;
+
+public interface TeacherRepository extends JpaRepository<Teacher, Long>{
 
 }
