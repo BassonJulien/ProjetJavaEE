@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <style>
@@ -31,45 +32,56 @@ input[type=submit]:hover {
     background-color: #f2f2f2;
     padding: 20px;
 }
+
+.error {
+	color: red;
+}
 </style>
 <body>
-
 <div class="form">
-  <form action="/action_page.php">
+  <form:form  method="POST" modelAttribute="userValidator">
   
   	<label for="civility">Civility</label>
-    	<select id="civility" name="civility">
-      		<option value="mister">Mr</option>
-      		<option value="miss">Miss</option>
-    	</select>
+    	<form:select path="civility">
+      		<form:option value="mister">Mr</form:option>
+      		<form:option value="miss">Miss</form:option>
+    	</form:select>
     	
     <label for="surname">Surname</label>
-    <input type="text" id="surname" name="surname" placeholder="Your surname..">
+    <form:input path="surname" />
+    <form:errors path="surname" cssClass="error"/>
+    <br>
 
     <label for="name">Name</label>
-    <input type="text" id="name" name="name" placeholder="Your name..">
-	
-	<label for="mail">Mail</label>
-  	<input type="text" id="mail" name="mail" placeholder="Your mail adress..">
-	
-
-	<label for="password">Password</label>
-  	<input type="text" id="password" name="password" placeholder="Your password..">
-
-	<label for="cpassword">Confirm Password</label>
-  	<input type="text" id="cpassword" name="cpassword" placeholder="Confirm your password..">
+    <form:input path="name" />
+    <form:errors path="name" cssClass="error"/>
+    <br>
+    
+    <label for="name">Email</label>
+    <form:input path="email" />
+    <form:errors path="email" cssClass="error"/>
+    <br>
+    
+    <label for="name">Password</label>
+    <form:input path="password" />
+    <form:errors path="password" cssClass="error"/>
+    <br>
+    
+    <label for="name">Confirm Password</label>
+    <form:input path="confirmPassword" />
+    <form:errors path="confirmPassword" cssClass="error"/>
+    <br>
+    
 	
 
     <label for="profile">Profile</label>
-    <select id="profile" name="profile">
-      <option value="admin">Admin</option>
-      <option value="teacher">Teacher</option>
-      <option value="strudent">Student</option>
-    </select>
+    <form:select path="profile">
+      <form:option value="admin">Admin</form:option>
+      <form:option value="teacher">Teacher</form:option>
+      <form:option value="student">Student</form:option>
+    </form:select>
   
     <input type="submit" value="Create account">
-  </form>
-</div>
-
+  </form:form>
 </body>
 </html>

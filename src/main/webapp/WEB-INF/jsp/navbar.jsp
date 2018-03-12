@@ -42,6 +42,15 @@ body {
     background-color: #ddd;
     color: black;
 }
+.logout {
+    float: right;
+
+}
+
+.logout a:hover {
+    background-color: #ff0000;
+
+}
 </style>
 </head>
 <body>
@@ -58,6 +67,7 @@ body {
   			<a href="${pageContext.request.contextPath}/student/news">News</a>
   			<a href="${pageContext.request.contextPath}/student/timeTable">Time table</a>
   			<a href="${pageContext.request.contextPath}/student/marks">My marks</a>
+  			<div class="logout"><a href="${pageContext.request.contextPath}/home">Log out</a> </div>
 		</div>
     </c:when>  
       
@@ -67,6 +77,8 @@ body {
   			<a href="${pageContext.request.contextPath}/admin/newsManage">News Management</a>
   			<a href="${pageContext.request.contextPath}/admin/timeTableManage">Time table Management</a>
   			<a href="${pageContext.request.contextPath}/admin/accountManage">Accounts management</a> 
+  			<div class="logout"><a href="${pageContext.request.contextPath}/home">Log out</a> </div>
+  			
 		</div>
     </c:when>
     
@@ -75,6 +87,8 @@ body {
   			<a href="${pageContext.request.contextPath}/teacher/home">Home</a>
   			<a href="${pageContext.request.contextPath}/teacher/news">News</a>
   			<a href="${pageContext.request.contextPath}/teacher/marksManagement">Marks management</a> 
+  			<div class="logout"><a href="${pageContext.request.contextPath}/home">Log out</a> </div>
+  			
 		</div>
     </c:when> 
     

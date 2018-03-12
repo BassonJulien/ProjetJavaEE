@@ -10,7 +10,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	//@Query("select o from Student where o.password=:x")
 	//public Student student(@Param("x") String password);
 	
-	@Query(value = "SELECT * FROM Intranet.student WHERE Intranet.student.username=:studentName LIMIT 1;", nativeQuery=true)
+	@Query(value = "SELECT * FROM intranetPortal.student WHERE intranetPortal.student.username=:studentName LIMIT 1;", nativeQuery=true)
 	public Student getStudentFromName(@Param("studentName") String studentName); 
 
 		// TODO Auto-generated method stub

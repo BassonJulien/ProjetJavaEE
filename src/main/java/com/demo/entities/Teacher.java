@@ -55,12 +55,11 @@ public class Teacher {
 		this.courses = courses;
 	}
 
-	public Teacher(String name, String username, String password, Collection<Course> courses) {
+	public Teacher(String name, String username, String password) {
 		super();
 		this.name = name;
 		this.username = username;
 		this.password = password;
-		this.courses = courses;
 	}
 
 	public Teacher() {

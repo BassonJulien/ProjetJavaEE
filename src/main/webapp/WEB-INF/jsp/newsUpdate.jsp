@@ -1,6 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
+<head>
+
 <style>
 input[type=text], select {
     width: 100%;
@@ -36,29 +39,33 @@ input[type=submit]:hover {
 	color: red;
 }
 </style>
+
+</head>
 <body>
+<%@ include file="navbar.jsp" %>
+<h1>News Update</h1>
 
 <div class="form">
-  <form:form  method="POST" modelAttribute="newsValidator">
+  <form:form  method="POST"  modelAttribute="newsValidator">
     <label for="title">Title</label>
-    <form:input path="title"/>
+    <form:input path="title" value="${title}"/>
     <form:errors path="title" cssClass="error"/>
 
     <label for="description">Description</label>
-    <form:input path="description"/>
+    <form:input path="description" value="${description }"/>
     <form:errors path="description" cssClass="error"/>
     
 
 	<label for="image">Image URL</label>
-    <form:input path="image"/>
+    <form:input path="image" value="${image}"/>
     
-    <form:checkbox path="active"/> Active<br>
+    <form:checkbox path="active" checked="checked"/> Active<br>
     <br>
     
     Expiration date:
-    <form:input type="date" path="date"/>
+    <form:input type="date" path="date" value="${date}"/>
     
-    <input type="submit" value="Create news">
+    <input type="submit" value="Update news">
   </form:form>
 </div>
 

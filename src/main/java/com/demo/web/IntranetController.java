@@ -25,9 +25,9 @@ import com.demo.entities.Teacher;
 @Controller
 public class IntranetController {
 	public String message = "student";
+	
 	@Autowired
 	private IntranetMetierInterface metierInterface;
-
 	@RequestMapping("/")
 	public String empty(Model model, HttpServletRequest request, HttpServletResponse response) {
 		model.addAttribute("profile", message);
@@ -51,6 +51,8 @@ public class IntranetController {
 			}
 
 			if (actualCookie != null) {
+				String profile = actualCookie.getValue().split("-")[0];
+				pathLink = "redirect:/"+profile+"/home";
 				System.out.println("cookie already existed");
 				// Fixer la date d’expiration du cookie à 20 min (en sec)
 				actualCookie.setMaxAge(60 * 20);
@@ -96,11 +98,11 @@ public class IntranetController {
 			try {
 				Student studentTemp = metierInterface.getStudentFromName(user.getUsername());
 				String password = studentTemp.getPassword();
-				cookieId = profile + studentTemp.getIdStudent();
+				cookieId = profile +"-"+ studentTemp.getIdStudent();
 				if (password.equals(user.getPassword())) {
 					System.out.println("le password de l'étudiant est bon");
 					isRegistered = true;
-					// pathLink =
+					pathLink = "redirect:/student/home";
 				}
 				else error += " Mauvais mot de passe";
 			} catch (Exception e) {
@@ -114,11 +116,11 @@ public class IntranetController {
 			try {
 				Admin adminTemp = metierInterface.getAdminFromName(user.getUsername());
 				String password = adminTemp.getPassword();
-				cookieId = profile + adminTemp.getIdAdim();
+				cookieId = profile +"-"+ adminTemp.getIdAdim();
 				if (password.equals(user.getPassword())) {
 					System.out.println("le password de l'admin est bon");
 					isRegistered = true;
-					// pathLink =
+					pathLink = "redirect:/admin/home";
 
 				}
 				else error += " Mauvais mot de passe";
@@ -135,11 +137,11 @@ public class IntranetController {
 			try {
 				Teacher teacherTemp = metierInterface.getTeacherFromName(user.getUsername());
 				String password = teacherTemp.getPassword();
-				cookieId = profile + teacherTemp.getIdTeacher();
+				cookieId = profile +"-"+ teacherTemp.getIdTeacher();
 				if (password.equals(user.getPassword())) {
 					System.out.println("le password de l'enseignant est bon");
 					isRegistered = true;
-					// pathLink =
+					pathLink = "redirect:/teacher/home";
 				}
 				else error += " Mauvais mot de passe";
 
