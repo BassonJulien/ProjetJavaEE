@@ -6,16 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demo.dao.AdminRepository;
-import com.demo.dao.ClassRepository;
-import com.demo.dao.NewsRepository;
-import com.demo.dao.StudentRepository;
-import com.demo.dao.TeacherRepository;
-import com.demo.entities.Admin;
-import com.demo.entities.GroupClass;
-import com.demo.entities.News;
-import com.demo.entities.Student;
-import com.demo.entities.Teacher;
+
+import com.demo.dao.*;
+
+import com.demo.entities.*;
 
 @Service
 @Transactional
@@ -31,6 +25,10 @@ public class IntranetMetierImplement implements IntranetMetierInterface{
 	private NewsRepository newsRep;
 	@Autowired
 	private ClassRepository classRep;
+	@Autowired
+	private CourseRepository courseRep;
+	@Autowired
+	private MarkRepository markRep;
 	@Override
 	public void createAdmin(String name, String username, String password) {
 		// TODO Auto-generated method stub
@@ -93,11 +91,64 @@ public class IntranetMetierImplement implements IntranetMetierInterface{
 		newsRep.updateNews(id, title, description, image, date, isActive);
 		
 	}
+	@Override
+	public Student getStudentFromName(String studentName) {
+		System.out.println("GetStudent FromName");
+		if(studentRep.getStudentFromName(studentName) == null) throw new RuntimeException("étudiant non trouvable");
+		else return studentRep.getStudentFromName(studentName);
+	}
+	
+	@Override
+	public Teacher getTeacherFromName(String teacherName) {
+		System.out.println("GetTeacher FromName");
+		if(teacherRep.getTeacherFromName(teacherName) == null) throw new RuntimeException("enseignant non trouvable");
+		else return teacherRep.getTeacherFromName(teacherName);
+	}
+	
+
+	@Override
+	public Admin getAdminFromName(String adminName) {
+		System.out.println("GetAdmin FromName");
+		if(adminRep.getAdminFromName(adminName) == null) throw new RuntimeException("admin non trouvable");
+		else return adminRep.getAdminFromName(adminName);
+	}
 
 	@Override
 	public List<News> getLatestNewsList() {
 		// TODO Auto-generated method stub
 		return newsRep.getLatestNewsList();
+	}
+
+	@Override
+	public List<Object[]> getCourseClass(String id) {
+		// TODO Auto-generated method stub
+		return courseRep.getCourseClassList(id);
+	}
+
+	@Override
+	public List<Object[]> getStudentFromClassName() {
+		// TODO Auto-generated method stub
+		return studentRep.getStudentFromClassName();
+	}
+
+	@Override
+	public Course getCourseFromName(String courseName) {
+		// TODO Auto-generated method stub
+		return courseRep.getCourseFromName(courseName);
+	}
+
+	@Override
+	public Student getStudentFromUsername(String username) {
+		// TODO Auto-generated method stub
+		return studentRep.getStudentFromUsername(username);
+	}
+
+	@Override
+	public void createMark(Student student, Course course, int mark) {
+		// TODO Auto-generated method stub
+		Mark newMark = markRep.save(new Mark(student, course, mark));
+
+		
 	}
 
 }

@@ -33,9 +33,9 @@ input[type=submit]:hover {
 }
 </style>
 <body>
-
+	<font size="3" color="red">${error}</font>
 <div class="form">
-  <form action="/action_page.php">
+  <form action="/" method="POST">
     <label for="username">Username</label>
     <input type="text" id="username" name="username" placeholder="Your username..">
 
@@ -46,7 +46,7 @@ input[type=submit]:hover {
     <select id="profile" name="profile">
       <option value="admin">Admin</option>
       <option value="teacher">Teacher</option>
-      <option value="strudent">Student</option>
+      <option value="student">Student</option>
     </select>
   
     <input type="submit" value="Login">

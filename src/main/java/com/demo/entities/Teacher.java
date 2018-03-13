@@ -12,6 +12,10 @@ public class Teacher {
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue
 	private long idTeacher;
+	public long getIdTeacher() {
+		return idTeacher;
+	}
+
 	private String name;
 	private String username;
 	private String password;

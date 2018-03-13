@@ -7,21 +7,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.demo.dao.AdminRepository;
-import com.demo.dao.ClassRepository;
-import com.demo.dao.StudentRepository;
-import com.demo.dao.TeacherRepository;
-import com.demo.dao.UserRepository;
-import com.demo.entities.Admin;
-import com.demo.entities.GroupClass;
-import com.demo.entities.Student;
-import com.demo.entities.Teacher;
-import com.demo.entities.User;
+import com.demo.dao.*;
+import com.demo.entities.*;
+
 
 
 @SpringBootApplication
 public class DemoSpringBanqueApplication implements CommandLineRunner{
 	@Autowired
+
 	private AdminRepository adminRep;
 	@Autowired
 	private ClassRepository classRep;
@@ -29,8 +23,13 @@ public class DemoSpringBanqueApplication implements CommandLineRunner{
 	private TeacherRepository teacherRep;
 	@Autowired
 	private StudentRepository studentRep;
-
-
+	@Autowired
+	private NewsRepository newsRep;
+	@Autowired
+	private CourseRepository courseRep;
+	@Autowired
+	private MarkRepository markRep;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoSpringBanqueApplication.class, args);
 	}
@@ -38,8 +37,11 @@ public class DemoSpringBanqueApplication implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
 
+		//Student student1 = sutdentRep.save(new Student("lolo", "cam","0205", null));
+		//Teacher teacher1 = teacherRep.save(new Teacher("juju", "juju","0205", null));
+		//Admin admin1 = adminRep.save(new Admin("tom", "tom","0205"));
 
-		Admin admin = adminRep.save(new Admin("julien", "chazz", "kk"));
+		/*Admin admin = adminRep.save(new Admin("julien", "chazz", "kk"));
 		
 		GroupClass class1 = classRep.save(new GroupClass("3CT"));
 		GroupClass class2 = classRep.save(new GroupClass("3CI"));
@@ -49,10 +51,30 @@ public class DemoSpringBanqueApplication implements CommandLineRunner{
 		Teacher teacher1 = teacherRep.save(new Teacher("Robin", "waxo", "cube4ever"));
 		Teacher teacher2 = teacherRep.save(new Teacher("Jribi", "salma", "j2ee"));
 		
-		Student student1 = studentRep.save(new Student("loic", "camelot", "lolocamcam", class1));
-		
-		
+		Course course1 = courseRep.save(new Course("J2EE", teacher2, class1));
+		Course course2 = courseRep.save(new Course("database", teacher2, class2));
+		Course course3 = courseRep.save(new Course("clientserver", teacher1, class1));
+		Course course4 = courseRep.save(new Course("database", teacher2, class1));
 
+
+
+		
+		Student student1 = studentRep.save(new Student("loic", "camelot", "lolocamcam", class1));
+		News news1 = newsRep.save(new News("ici il fait beau", "camelot", "lolocamcam", "string",true));*/
+
+	/*	GroupClass class2 = classRep.save(new GroupClass("3CI"));
+
+		Student student2 = studentRep.save(new Student("jade", "dagher", "1234", class2));*/
+
+		
+		//SELECT course.name, group_class.name FROM intranetPortal.course inner join teacher on  course.teacher_id= teacher.id_teacher inner join group_class on course.class_id=group_class.class_id where teacher.id_teacher="2";
+		/*Student student1 = studentRep.save(new Student("lolo", "cam","0205", null));
+		GroupClass class1 = classRep.save(new GroupClass("3CT"));
+		Teacher teacher2 =teacherRep.save( new Teacher("Jribi", "salma", "j2ee"));
+
+		Course course4 = courseRep.save(new Course("database", teacher2, class1));
+		
+		Mark mark = markRep.save(new Mark(student1, course4, 5));*/
 
 
 		// TODO Auto-generated method stub

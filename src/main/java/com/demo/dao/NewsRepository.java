@@ -19,6 +19,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 	
 	@Modifying
 	@Query(value = "DELETE FROM intranetPortal.news WHERE title=:newsTitle ;", nativeQuery=true)
+
 	public void deleteNewsFromTitle(@Param("newsTitle") String title); 
 	
 	@Query(value = "SELECT * FROM intranetPortal.news WHERE intranetPortal.news.title=:newsTitle LIMIT 1;", nativeQuery=true)

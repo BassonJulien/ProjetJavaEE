@@ -14,6 +14,10 @@ public class Student {
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue
 	private long idStudent;
+	public long getIdStudent() {
+		return idStudent;
+	}
+
 	private String name;
 	private String username;
 	private String password;
@@ -76,6 +80,9 @@ public class Student {
 
 	public void setMarks(Collection<Mark> marks) {
 		this.marks = marks;
+	}
+	public Long getId() {
+		return this.idStudent;
 	}
 
 	
