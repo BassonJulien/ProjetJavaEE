@@ -31,6 +31,13 @@
 	color: white;
 }
 
+img {
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+}
 </style>
 </head>
 <body>
@@ -43,11 +50,15 @@
 			<tr>
 				<th>Title</th>
 				<th>Description</th>
+				<th>Image</th>
 			</tr>
 			<c:forEach items="${news}" var="news">
 				<tr>
 					<td>${news.title}</td>
 					<td>${news.description}</td>
+					<td><img width=100 height="100" src="${news.image}">
+					</td>
+					
 				</tr>
 			</c:forEach>
 		</table>

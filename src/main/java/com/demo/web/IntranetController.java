@@ -1,5 +1,6 @@
 package com.demo.web;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.Metier.IntranetMetierInterface;
 import com.demo.dao.StudentRepository;
 import com.demo.entities.Admin;
+import com.demo.entities.News;
 import com.demo.entities.Student;
 import com.demo.entities.Teacher;
 
@@ -60,12 +62,23 @@ public class IntranetController {
 				response.addCookie(actualCookie);
 			}
 		}
+		List<News> newsList = new ArrayList<>();
+		for (News news : metierInterface.getLatestNewsList())
+			newsList.add(news);
+		
+		model.addAttribute("news", newsList);
 
 		return pathLink;
 	}
 
 	@RequestMapping("/home")
 	public String home(Model model) {
+		
+		List<News> newsList = new ArrayList<>();
+		for (News news : metierInterface.getLatestNewsList())
+			newsList.add(news);
+		
+		model.addAttribute("news", newsList);
 
 		model.addAttribute("profile", message);
 		return "homeUnlogged";

@@ -105,11 +105,11 @@ public class TeacherController {
 		model.addAttribute("markValidator", new NewMarkValidator());
 
 		List<String> courseClassList = new ArrayList<>();
-		for (Object courseClass[] : interfaceMetier.getCourseClass("215"))
+		for (Object courseClass[] : interfaceMetier.getCourseClass(this.id.toString()))
 			courseClassList.add(" "+courseClass[0] + " - " + courseClass[1]);
 
 		List<String> courseClassList1 = new ArrayList<>();
-		for (Object courseClass[] : interfaceMetier.getCourseClass("215"))
+		for (Object courseClass[] : interfaceMetier.getCourseClass(this.id.toString()))
 			courseClassList1.add(courseClass[1] + "");
 
 		model.addAttribute("courseClass", courseClassList);

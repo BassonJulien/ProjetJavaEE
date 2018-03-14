@@ -115,8 +115,16 @@ class StudentController {
 	public String marks(Model model )
 	{
 		List<Mean> meanList = new ArrayList<>();
+		List<String> dayList = new ArrayList<>();
 
-		for (Mean mean : interfaceMetier.getStudentsMeanFromId((long) 1)) {
+		for(int i = 0; i<6; i++) {
+			for(int j =0; j<5; j++) {
+				dayList.add("Day " + i + " timeSlot " + j );
+			}
+		}
+		System.out.println(dayList);
+
+		for (Mean mean : interfaceMetier.getStudentsMeanFromId(this.id)) {
 			meanList.add(mean);
 		}
 		model.addAttribute("meanList", meanList) ;

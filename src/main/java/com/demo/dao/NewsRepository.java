@@ -11,10 +11,10 @@ import com.demo.entities.News;
 
 public interface NewsRepository extends JpaRepository<News, Long> {
 
-	@Query(value = "SELECT * FROM intranetPortal.news;", nativeQuery=true)
+	@Query(value = "SELECT * FROM intranetPortal.news where date >= now() ;", nativeQuery=true)
 	public List<News> getNewsList(); 
 	
-	@Query(value = "SELECT * FROM intranetPortal.news GROUP BY id_news DESC LIMIT 3 ;", nativeQuery=true)
+	@Query(value = "SELECT * FROM intranetPortal.news where date >= now()  GROUP BY id_news DESC LIMIT 3 ;", nativeQuery=true)
 	public List<News> getLatestNewsList(); 
 	
 	@Modifying
