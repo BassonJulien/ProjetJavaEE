@@ -42,12 +42,24 @@ public class AdminController {
 	@RequestMapping("/")
 	public String empty(Model model) {
 		model.addAttribute("profile", message);
+		List<News> newsList = new ArrayList<>();
+		for (News news : interfaceMetier.getLatestNewsList())
+			newsList.add(news);
+		
+		model.addAttribute("news", newsList);
+
+	
 		return "homeLogged";
 	}
 
 	@RequestMapping("/home")
 	public String home(Model model) {
 		model.addAttribute("profile", message);
+		List<News> newsList = new ArrayList<>();
+		for (News news : interfaceMetier.getLatestNewsList())
+			newsList.add(news);
+		
+		model.addAttribute("news", newsList);
 		return "homeLogged";
 	}
 
@@ -161,7 +173,7 @@ public class AdminController {
 		interfaceMetier.createNews(newsValidator.getTitle(), newsValidator.getDescription(), newsValidator.getImage(),
 				newsValidator.getDate(), newsValidator.isActive());
 
-		return "redirect:/admin/home";
+		return "redirect:/admin/newsManage";
 
 	}
 
@@ -314,12 +326,7 @@ public class AdminController {
 				System.out.println("courseday  " + course);
 
 			}
-//			for (int i = 0; i< courseSortedByDay.size() ; i++) {
-//				
-////				courseSortedByDay.add(course.getDay() + "-" + course.getHours() + "-" + course.getName() + "-");
-//				System.out.println("courseday  " + courseSortedByDay[i]);
-//
-//			}
+
 //			int i= 0;
 //			for (String hours : hoursDayList) {
 //				i= 0;

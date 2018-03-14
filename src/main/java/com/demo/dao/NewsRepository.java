@@ -13,8 +13,13 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
 	@Query(value = "SELECT * FROM intranetPortal.news;", nativeQuery=true)
 	public List<News> getNewsList(); 
+	
+	@Query(value = "SELECT * FROM intranetPortal.news GROUP BY id_news DESC LIMIT 3 ;", nativeQuery=true)
+	public List<News> getLatestNewsList(); 
+	
 	@Modifying
-	@Query(value = "DELETE FROM intranetPortal.news WHERE intranetPortal.news.title=:newsTitle;", nativeQuery=true)
+	@Query(value = "DELETE FROM intranetPortal.news WHERE title=:newsTitle ;", nativeQuery=true)
+
 	public void deleteNewsFromTitle(@Param("newsTitle") String title); 
 	
 	@Query(value = "SELECT * FROM intranetPortal.news WHERE intranetPortal.news.title=:newsTitle LIMIT 1;", nativeQuery=true)

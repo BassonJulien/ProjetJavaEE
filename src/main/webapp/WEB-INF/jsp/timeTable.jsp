@@ -28,6 +28,7 @@
 </style>
 </head>
 <body>
+<%@ include file="navbar.jsp" %>
 
 <table id="customers">
   <tr>

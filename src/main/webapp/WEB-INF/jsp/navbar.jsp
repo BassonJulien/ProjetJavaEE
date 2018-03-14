@@ -86,7 +86,7 @@ body {
 		<div class="topnav">
   			<a href="${pageContext.request.contextPath}/teacher/home">Home</a>
   			<a href="${pageContext.request.contextPath}/teacher/news">News</a>
-  			<a href="${pageContext.request.contextPath}/teacher/marksManagement">Marks management</a> 
+  			<a href="${pageContext.request.contextPath}/teacher/marksManage">Marks management</a> 
   			<div class="logout"><a href="${pageContext.request.contextPath}/home">Log out</a> </div>
   			
 		</div>

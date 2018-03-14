@@ -1,19 +1,18 @@
 package com.demo.Metier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
 import com.demo.dao.*;
 
-import com.demo.entities.Admin;
-import com.demo.entities.Course;
-import com.demo.entities.GroupClass;
-import com.demo.entities.News;
-import com.demo.entities.Student;
-import com.demo.entities.Teacher;
+import com.demo.entities.*;
+import com.demo.staticClasses.Mean;
 
 @Service
 @Transactional
@@ -32,6 +31,8 @@ public class IntranetMetierImplement implements IntranetMetierInterface {
 	@Autowired
 	private CourseRepository courseRep;
 
+	@Autowired
+	private MarkRepository markRep;
 	@Override
 	public void createAdmin(String name, String username, String password) {
 		// TODO Auto-generated method stub
@@ -142,4 +143,59 @@ public class IntranetMetierImplement implements IntranetMetierInterface {
 		else
 			return classRep.getClassFromName(className);
 	}
+	public List<News> getLatestNewsList() {
+		// TODO Auto-generated method stub
+		return newsRep.getLatestNewsList();
+	}
+
+	@Override
+	public List<Object[]> getCourseClass(String id) {
+		// TODO Auto-generated method stub
+		return courseRep.getCourseClassList(id);
+	}
+
+	@Override
+	public List<Object[]> getStudentFromClassName() {
+		// TODO Auto-generated method stub
+		return studentRep.getStudentFromClassName();
+	}
+
+	@Override
+	public Course getCourseFromName(String courseName) {
+		// TODO Auto-generated method stub
+		return courseRep.getCourseFromName(courseName);
+	}
+
+	@Override
+	public Student getStudentFromUsername(String username) {
+		// TODO Auto-generated method stub
+		return studentRep.getStudentFromUsername(username);
+	}
+
+	@Override
+	public void createMark(Student student, Course course, int mark) {
+		// TODO Auto-generated method stub
+		Mark newMark = markRep.save(new Mark(student, course, mark));
+
+		
+	}
+
+	@Override
+	public List<Mean> getStudentsMeanFromId(Long studentId) {
+		// TODO Auto-generated method stub
+		List<Object[]> objects = markRep.getStudentsMeanFromId(studentId);
+		List<Mean> meanList = new ArrayList<>();
+		List<Integer> markList = new ArrayList<Integer>();
+		String markString ="";
+		for (Object[] obj : objects ){
+			for(float markObj : markRep.getStudentsMarksFromCourseName(obj[1].toString(), studentId) ) {
+				markString+=" " + markObj;
+			}
+			System.out.println(obj[0].toString()+ " "+ studentId);
+			meanList.add(new Mean((double)obj[0], obj[1].toString(), markString));
+			markString="";
+		}
+		return meanList;
+	}
+
 }

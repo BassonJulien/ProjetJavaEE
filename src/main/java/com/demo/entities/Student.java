@@ -81,6 +81,9 @@ public class Student {
 	public void setMarks(Collection<Mark> marks) {
 		this.marks = marks;
 	}
+	public Long getId() {
+		return this.idStudent;
+	}
 
 	
 }
