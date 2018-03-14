@@ -1,5 +1,6 @@
 package com.demo.Metier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demo.dao.*;
 
 import com.demo.entities.*;
+import com.demo.staticClasses.Mean;
 
 @Service
 @Transactional
@@ -149,6 +151,24 @@ public class IntranetMetierImplement implements IntranetMetierInterface{
 		Mark newMark = markRep.save(new Mark(student, course, mark));
 
 		
+	}
+
+	@Override
+	public List<Mean> getStudentsMeanFromId(Long studentId) {
+		// TODO Auto-generated method stub
+		List<Object[]> objects = markRep.getStudentsMeanFromId(studentId);
+		List<Mean> meanList = new ArrayList<>();
+		List<Integer> markList = new ArrayList<Integer>();
+		String markString ="";
+		for (Object[] obj : objects ){
+			for(float markObj : markRep.getStudentsMarksFromCourseName(obj[1].toString(), studentId) ) {
+				markString+=" " + markObj;
+			}
+			System.out.println(obj[0].toString()+ " "+ studentId);
+			meanList.add(new Mean((double)obj[0], obj[1].toString(), markString));
+			markString="";
+		}
+		return meanList;
 	}
 
 }

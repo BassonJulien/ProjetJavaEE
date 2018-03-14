@@ -3,6 +3,7 @@ package com.demo.Metier;
 import java.util.List;
 
 import com.demo.entities.*;
+import com.demo.staticClasses.Mean;
 
 
 public interface IntranetMetierInterface {
@@ -26,5 +27,6 @@ public interface IntranetMetierInterface {
 	public Course getCourseFromName(String courseName);
 	public Student getStudentFromUsername(String username);
 	public void createMark(Student student, Course course, int mark);
+	public List<Mean> getStudentsMeanFromId(Long studentId);
 
 }
