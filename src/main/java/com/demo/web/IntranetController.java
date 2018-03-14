@@ -36,7 +36,7 @@ public class IntranetController {
 		String pathLink = "homeUnlogged";
 
 		// Test if one cookie is actual to redirect the user without creds
-		if (!cookies.equals(null)) {
+		if (cookies != null) {
 			Cookie actualCookie = null;
 			for (int i = 0; i < cookies.length; i++) {
 				String name = cookies[i].getName();
@@ -70,18 +70,7 @@ public class IntranetController {
 		model.addAttribute("profile", message);
 		return "homeUnlogged";
 	}
-	@RequestMapping(value = "/PlanningCourseForm", method = RequestMethod.GET)
-	public String getPlanningCourse(Model model) {
-		System.out.println("les erreurs sont : ");
-		model.addAttribute("profile", message);
-		return "planningCourseForm";
-	}
-	@RequestMapping(value = "/PlanningCourseForm", method = RequestMethod.POST)
-	public String postPlanningCourse(Model model) {
 
-		model.addAttribute("profile", message);
-		return "planningCourseForm";
-	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String postLoginForm(@ModelAttribute("student") Student user, @ModelAttribute("profile") String profile,

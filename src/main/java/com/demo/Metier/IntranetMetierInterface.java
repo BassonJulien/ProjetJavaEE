@@ -20,5 +20,10 @@ public interface IntranetMetierInterface {
 	public void updateNews(Long id, String title, String description, String image, String date, boolean isActive);
 	public Student getStudentFromName(String studentName);
 	public Teacher getTeacherFromName(String teacherName);
-	
+	public GroupClass getClassFromName(String className);
+
+	List<Teacher> getTeacherList();
+	List<Course> getCourseList(); 
+	List<Course> getCourseListByTeacher(Long teacher); 
+
 }

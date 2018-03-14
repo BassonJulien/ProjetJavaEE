@@ -88,4 +88,9 @@
 </table>
 
 </body>
+<c:forEach var="item" items="${hoursDayList}" varStatus="row">
+									<tr>
+									<th>${item}</th>
+									</tr>
+								</c:forEach>
 </html>
