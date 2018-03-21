@@ -30,11 +30,17 @@ Just before starting, create your database :
 
 
 ## Resultats
+# Home Login
 ![alt text](screenShots/home.png "Home login")
+# Home Admin
 ![alt text](screenShots/homeAdmin.png "Home admin")
+# Time table  admin managing
 ![alt text](screenShots/TimeTableManage.png "time table  admin managing")
+# News admin managing
 ![alt text](screenShots/newsManage.png "news admin managing")
+# Mark teacher managing
 ![alt text](screenShots/manageMark.png "mark teacher managing")
+# Time table student viewing
 ![alt text](screenShots/manageMark.png "time table student viewing")
 
 
