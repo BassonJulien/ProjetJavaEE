@@ -2,6 +2,8 @@ package com.demo.Metier;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.demo.entities.*;
 import com.demo.staticClasses.Mean;
 
@@ -23,15 +25,18 @@ public interface IntranetMetierInterface {
 	public Student getStudentFromName(String studentName);
 	public Teacher getTeacherFromName(String teacherName);
 	public GroupClass getClassFromName(String className);
+	public GroupClass getClassFromId(Long id);
 
 	List<Teacher> getTeacherList();
 	List<Course> getCourseList(); 
 	List<Course> getCourseListByTeacher(Long teacher); 
-	public List<Object[]> getCourseClass(String id);
 	public List<String> getStudentFromClassName(String name);
+	public List<Object[]> getCourseClass(Long id);
 	public Course getCourseFromName(String courseName);
+	public List<Course> getCourseListByClass(Long id);
 	public Student getStudentFromUsername(String username);
 	public void createMark(Student student, Course course, int mark);
 	public List<Mean> getStudentsMeanFromId(Long studentId);
+	public Student getStudentFromId(Long studentId);
 
 }

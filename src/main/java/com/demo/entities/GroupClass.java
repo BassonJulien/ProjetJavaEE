@@ -15,6 +15,14 @@ public class GroupClass {
 	private long classId;
 	
 
+	public long getClassId() {
+		return classId;
+	}
+
+	public void setClassId(long classId) {
+		this.classId = classId;
+	}
+
 	private String name;
 	
 	@OneToMany(mappedBy = "studentClass")

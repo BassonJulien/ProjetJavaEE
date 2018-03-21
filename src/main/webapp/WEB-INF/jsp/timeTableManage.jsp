@@ -214,7 +214,7 @@ input[type=submit]:hover {
 		<div class="column">
 			<div class="form2">
 				<c:choose>
-					<c:when test="${valueButton =='visualize'}">
+					<c:when test="${visualize == true}">
 
 						<table id="planning">
 							<tr>
@@ -224,28 +224,78 @@ input[type=submit]:hover {
 							</tr>
 
 							<tr>
-								<c:forEach var="hours" items="${hoursDayList}" varStatus="row">
-								<tr>
-									<c:forEach var="day" items="${courseDayList}" varStatus="row">
-											<c:forEach var="course" items="${courseSortedByDay}"
-												varStatus="row">
-												<c:choose>
-													<c:when test="${day.equals(course.split('-')[0]) && hours.equals(course.split('-')[1])}">
-														<td>${course}</td>
-													</c:when>
-													<c:when test="${!day.equals(course.split('-')[0]) && hours.equals(course.split('-')[1])}">
-													</c:when>
-												</c:choose>
-											</c:forEach>
-									</c:forEach>
-									</tr>
+								<c:forEach var="item" items="${heightAM}" varStatus="row">
+									<c:choose>
+										<c:when test="${item.split('-')[1] != null}">
+											<td>${item.split('-')[0]}</td>
+										</c:when>
+										<c:otherwise>
+											<td>free</td>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
-
-							</tr>
-
-
-
-
+							<tr>
+							<tr>
+								<c:forEach var="item" items="${tenAM}" varStatus="row">
+									<c:choose>
+										<c:when test="${item.split('-')[1] != null}">
+											<td>${item.split('-')[0]}</td>
+										</c:when>
+										<c:otherwise>
+											<td>free</td>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							<tr>
+							<tr>
+								<c:forEach var="item" items="${noon}" varStatus="row">
+									<c:choose>
+										<c:when test="${item.split('-')[1] != null}">
+											<td>${item.split('-')[0]}</td>
+										</c:when>
+										<c:otherwise>
+											<td>free</td>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							<tr>
+							
+							<tr>
+								<c:forEach var="item" items="${twoPM}" varStatus="row">
+									<c:choose>
+										<c:when test="${item.split('-')[1] != null}">
+											<td>${item.split('-')[0]}</td>
+										</c:when>
+										<c:otherwise>
+											<td>free</td>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							<tr>
+							<tr>
+								<c:forEach var="item" items="${fourPM}" varStatus="row">
+									<c:choose>
+										<c:when test="${item.split('-')[1] != null}">
+											<td>${item.split('-')[0]}</td>
+										</c:when>
+										<c:otherwise>
+											<td>free</td>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>	
+							<tr>
+							<tr>
+								<c:forEach var="item" items="${sixPM}" varStatus="row">
+									<c:choose>
+										<c:when test="${item.split('-')[1] != null}">
+											<td>${item.split('-')[0]}</td>
+										</c:when>
+										<c:otherwise>
+											<td>free</td>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							<tr>
 						</table>
 
 

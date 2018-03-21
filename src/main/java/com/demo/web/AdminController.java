@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.Metier.IntranetMetierInterface;
 import com.demo.dao.CourseRepository;
 import com.demo.entities.*;
+import com.demo.staticClasses.*;
 
 import com.demo.validators.NewNewsFormValidator;
 import com.demo.validators.NewUserFormValidator;
@@ -45,10 +46,9 @@ public class AdminController {
 		List<News> newsList = new ArrayList<>();
 		for (News news : interfaceMetier.getLatestNewsList())
 			newsList.add(news);
-		
+
 		model.addAttribute("news", newsList);
 
-	
 		return "homeLogged";
 	}
 
@@ -58,7 +58,7 @@ public class AdminController {
 		List<News> newsList = new ArrayList<>();
 		for (News news : interfaceMetier.getLatestNewsList())
 			newsList.add(news);
-		
+
 		model.addAttribute("news", newsList);
 		return "homeLogged";
 	}
@@ -206,7 +206,7 @@ public class AdminController {
 		List<String> hoursDayList = new ArrayList<>();
 
 		// hours list
-		hoursDayList.add("8AM");
+		hoursDayList.add("08AM");
 		hoursDayList.add("10AM");
 		hoursDayList.add("12AM");
 		hoursDayList.add("2PM");
@@ -223,9 +223,15 @@ public class AdminController {
 		for (GroupClass groupClass : interfaceMetier.getGroupClassList())
 			classNameList.add(groupClass.getName());
 		// get all course name
-		for (Course course : interfaceMetier.getCourseList()) {
-			courseNameList.add(course.getName());
-		}
+		// for (Course course : interfaceMetier.getCourseList()) {
+		// courseNameList.add(course.getName());
+		// }
+		// Course name List
+		courseNameList.add("Ember");
+		courseNameList.add("J2EE");
+		courseNameList.add("BDD");
+		courseNameList.add("DEVOPS");
+		courseNameList.add("ART");
 		// get all teachers
 		for (Teacher teacher : teachers) {
 			teachersNames.add(teacher.getName() + " " + teacher.getUsername());
@@ -253,12 +259,12 @@ public class AdminController {
 		String textSummary = "You choose " + p_teacherSelected + " teacher" + " who anims the course of "
 				+ p_courseNameSelected + " for the class " + p_classNameSelected + " on " + p_courseDaySelected + " at "
 				+ p_hoursDaySelected;
-
+		Boolean visualize = true;
 		// id of the teacher selected to find the teacher course list
 		Teacher teacherSelected = interfaceMetier.getTeacherFromName(p_teacherSelected.split(" ")[1]);
 		List<Course> courseListByTeacher = interfaceMetier.getCourseListByTeacher(teacherSelected.getIdTeacher());
 		GroupClass courseSelected = interfaceMetier.getClassFromName(p_classNameSelected);
-
+		
 		// initiate variable
 		List<Teacher> teachers = interfaceMetier.getTeacherList();
 		List<String> teachersNames = new ArrayList<>();
@@ -270,12 +276,17 @@ public class AdminController {
 		List<String> courseDayListByTeacher = new ArrayList<>();
 		List<String> courseHoursListByTeacher = new ArrayList<>();
 		List<String> courseClassNameListByTeacher = new ArrayList<>();
-		List<String> mondayCourse = new ArrayList<>();
-		List<String> tuesdayCourse = new ArrayList<>();
-		List<String> wednesdayCourse = new ArrayList<>();
-		List<String> thursdayCourse = new ArrayList<>();
-		List<String> fridayCourse = new ArrayList<>();
 		List<String> courseSortedByDay = new ArrayList<>();
+		List<TimeSlot> timeSlotList = new ArrayList<>();
+
+		//
+		List<String> heightAM = new ArrayList<>();
+		List<String> tenAM = new ArrayList<>();
+		List<String> noon = new ArrayList<>();
+		List<String> twoPM = new ArrayList<>();
+		List<String> fourPM = new ArrayList<>();
+		List<String> sixPM = new ArrayList<>();
+		List<String> days = new ArrayList<>();
 
 		// hours list
 		hoursDayList.add("08AM");
@@ -291,14 +302,23 @@ public class AdminController {
 		courseDayList.add("Thursday");
 		courseDayList.add("Friday");
 
+		// Course name List
+		courseNameList.add("Ember");
+		courseNameList.add("J2EE");
+		courseNameList.add("BDD");
+		courseNameList.add("DEVOPS");
+		courseNameList.add("ART");
+
+		// Days list
+		days.add("monday");
+		days.add("tuesday");
+		days.add("wednesday");
+		days.add("thursday");
+		days.add("friday");
+
 		// get all class name
 		for (GroupClass groupClass : interfaceMetier.getGroupClassList())
 			classNameList.add(groupClass.getName());
-		// get all course name
-		for (Course course : interfaceMetier.getCourseList()) {
-			courseNameList.add(course.getName());
-		}
-		// get all teachers
 		for (Teacher teacher : teachers) {
 			teachersNames.add(teacher.getName() + " " + teacher.getUsername());
 		}
@@ -319,43 +339,203 @@ public class AdminController {
 			courseClassNameListByTeacher.add(course.getClass().getName());
 
 		courseListByTeacher.sort(Comparator.comparing(Course::getHours));
-
-		if (valueButton.equals("visualize")) {
+		if(valueButton.equals("add")) {
+			visualize = false;
+		}
+		if (visualize) {
 			for (Course course : courseListByTeacher) {
 				courseSortedByDay.add(course.getDay() + "-" + course.getHours() + "-" + course.getName() + "-");
 				System.out.println("courseday  " + course);
+				if (course.getDay().equals("Monday")) {
+					System.out.println("courseday  ");
+
+					timeSlotList.add(new TimeSlot(course.getHours(), course.getName()+" "+course.getClassCourse().getName() + "-" + course.getHours(), null,
+							null, null, null));
+				}
+				if (course.getDay().equals("Tuesday")) {
+					System.out.println("courseday  ");
+
+					timeSlotList.add(new TimeSlot(course.getHours(), null, course.getName()+" "+course.getClassCourse().getName() + "-" + course.getHours(),
+							null, null, null));
+				}
+				if (course.getDay().equals("Wednesday")) {
+					System.out.println("courseday  ");
+
+					timeSlotList.add(new TimeSlot(course.getHours(), null, null,
+							course.getName()+" "+course.getClassCourse().getName() + "-" + course.getHours(), null, null));
+				}
+				if (course.getDay().equals("Thursday")) {
+					System.out.println("courseday  ");
+
+					timeSlotList.add(new TimeSlot(course.getHours(), null, null, null,
+							course.getName()+" "+course.getClassCourse().getName() + "-" + course.getHours(), null));
+				}
+				if (course.getDay().equals("Friday")) {
+					System.out.println("courseday  ");
+
+					timeSlotList.add(new TimeSlot(course.getHours(), null, null, null, null,
+							course.getName()+" "+course.getClassCourse().getName() + "-" + course.getHours()));
+				}
 
 			}
+			timeSlotList.sort(Comparator.comparing(TimeSlot::getName));
 
-//			int i= 0;
-//			for (String hours : hoursDayList) {
-//				i= 0;
-//				for (String course : courseSortedByDay) {
-//					if(hours.equals(course.split("-")[1])) {
-//						i++;
-//						if(i)
-//					}
-//				}
-//			}
-			// for (String day : courseDayList) {
-			// for (Course courseTeacher : courseListByTeacher) {
-			// if (day.equals(courseTeacher.getDay())) {
-			// courseSortedByDay.add(day+"-"+courseTeacher.getHours() + "-" +
-			// courseTeacher.getName() + "-");
-			//// + courseTeacher.getClass().getName()
-			// }
-			// }
-			// }
-		} else if (valueButton.equals("add")) {
+			for (String day : days) {
+				heightAM.add(day);
+				tenAM.add(day);
+				noon.add(day);
+				twoPM.add(day);
+				fourPM.add(day);
+				sixPM.add(day);
+			}
+			for (TimeSlot slot : timeSlotList) {
+				for (String item : heightAM) {
+					if (item.equals("monday") && slot.getMonday() != null && slot.getMonday().split("-")[1].equals("08AM")) {
+						heightAM.set(0,slot.getMonday()+"monday");
+					}
+					if (item.equals("tuesday") && slot.getTuesday() != null && slot.getTuesday().split("-")[1].equals("08AM")) {
+						heightAM.set(1,slot.getTuesday()+"tuesday");
+					}
+					
+					if (item.equals("wednesday") && slot.getWednesday() != null && slot.getWednesday().split("-")[1].equals("08AM")) {
+						heightAM.set(2,slot.getWednesday()+"wednesday");
+					}
+					
+					if (item.equals("thursday") && slot.getThursday() != null && slot.getThursday().split("-")[1].equals("08AM")) {
+						heightAM.set(3,slot.getThursday()+"thursday");
+					}
+					
+					if (item.equals("friday") && slot.getFriday() != null && slot.getFriday().split("-")[1].equals("08AM")) {
+						heightAM.set(4,slot.getFriday()+"friday");
+					}
+				}
+			}
+			for (TimeSlot slot : timeSlotList) {
+				for (String item : tenAM) {
+					if (item.equals("monday") && slot.getMonday() != null && slot.getMonday().split("-")[1].equals("10AM")) {
+						tenAM.set(0,slot.getMonday()+"monday");
+					}
+					
+					if (item.equals("tuesday") && slot.getTuesday() != null && slot.getTuesday().split("-")[1].equals("10AM")) {
+						tenAM.set(1,slot.getTuesday()+"tuesday");
+					}
+					
+					if (item.equals("wednesday") && slot.getWednesday() != null && slot.getWednesday().split("-")[1].equals("10AM")) {
+						tenAM.set(2,slot.getWednesday()+"wednesday");
+					}
+					
+					if (item.equals("thursday") && slot.getThursday() != null && slot.getThursday().split("-")[1].equals("10AM")) {
+						tenAM.set(3,slot.getThursday()+"thursday");
+					}
+					
+					if (item.equals("friday") && slot.getFriday() != null && slot.getFriday().split("-")[1].equals("10AM")) {
+						tenAM.set(4,slot.getFriday()+"friday");
+					}
+				}
+			}
+			for (TimeSlot slot : timeSlotList) {
+				for (String item : noon) {
+					if (item.equals("monday") && slot.getMonday() != null && slot.getMonday().split("-")[1].equals("12AM")) {
+						noon.set(0,slot.getMonday()+"monday");
+					}
+					
+					if (item.equals("tuesday") && slot.getTuesday() != null && slot.getTuesday().split("-")[1].equals("12AM")) {
+						noon.set(1,slot.getTuesday()+"tuesday");
+					}
+					
+					if (item.equals("wednesday") && slot.getWednesday() != null && slot.getWednesday().split("-")[1].equals("12AM")) {
+						noon.set(2,slot.getWednesday()+"wednesday");
+					}
+					
+					if (item.equals("thursday") && slot.getThursday() != null && slot.getThursday().split("-")[1].equals("12AM")) {
+						noon.set(3,slot.getThursday()+"thursday");
+					}
+					
+					if (item.equals("friday") && slot.getFriday() != null && slot.getFriday().split("-")[1].equals("12AM")) {
+						noon.set(4,slot.getFriday()+"friday");
+					}
+				}
+			}
+			for (TimeSlot slot : timeSlotList) {
+				for (String item : twoPM) {
+					if (item.equals("monday") && slot.getMonday() != null && slot.getMonday().split("-")[1].equals("2PM")) {
+						twoPM.set(0,slot.getMonday()+"monday");
+					}
+					
+					if (item.equals("tuesday") && slot.getTuesday() != null && slot.getTuesday().split("-")[1].equals("2PM")) {
+						twoPM.set(1,slot.getTuesday()+"tuesday");
+					}
+					
+					if (item.equals("wednesday") && slot.getWednesday() != null && slot.getWednesday().split("-")[1].equals("2PM")) {
+						twoPM.set(2,slot.getWednesday()+"wednesday");
+					}
+					
+					if (item.equals("thursday") && slot.getThursday() != null && slot.getThursday().split("-")[1].equals("2PM")) {
+						twoPM.set(3,slot.getThursday()+"thursday");
+					}
+					
+					if (item.equals("friday") && slot.getFriday() != null && slot.getFriday().split("-")[1].equals("2PM")) {
+						twoPM.set(4,slot.getFriday()+"friday");
+					}
+				}
+			}
+			for (TimeSlot slot : timeSlotList) {
+				for (String item : fourPM) {
+					if (item.equals("monday") && slot.getMonday() != null && slot.getMonday().split("-")[1].equals("4PM")) {
+						fourPM.set(0,slot.getMonday()+"monday");
+					}
+					
+					if (item.equals("tuesday") && slot.getTuesday() != null && slot.getTuesday().split("-")[1].equals("4PM")) {
+						fourPM.set(1,slot.getTuesday()+"tuesday");
+					}
+					
+					if (item.equals("wednesday") && slot.getWednesday() != null && slot.getWednesday().split("-")[1].equals("4PM")) {
+						fourPM.set(2,slot.getWednesday()+"wednesday");
+					}
+					
+					if (item.equals("thursday") && slot.getThursday() != null && slot.getThursday().split("-")[1].equals("4PM")) {
+						fourPM.set(3,slot.getThursday()+"thursday");
+					}
+					
+					if (item.equals("friday") && slot.getFriday() != null && slot.getFriday().split("-")[1].equals("4PM")) {
+						fourPM.set(4,slot.getFriday()+"friday");
+					}
+				}
+			}
+			for (TimeSlot slot : timeSlotList) {
+				for (String item : sixPM) {
+					if (item.equals("monday") && slot.getMonday() != null && slot.getMonday().split("-")[1].equals("6PM")) {
+						sixPM.set(0,slot.getMonday()+"monday");
+					}
+					
+					if (item.equals("tuesday") && slot.getTuesday() != null && slot.getTuesday().split("-")[1].equals("6PM")) {
+						sixPM.set(1,slot.getTuesday()+"tuesday");
+					}
+					
+					if (item.equals("wednesday") && slot.getWednesday() != null && slot.getWednesday().split("-")[1].equals("6PM")) {
+						sixPM.set(2,slot.getWednesday()+"wednesday");
+					}
+					
+					if (item.equals("thursday") && slot.getThursday() != null && slot.getThursday().split("-")[1].equals("6PM")) {
+						sixPM.set(3,slot.getThursday()+"thursday");
+					}
+					
+					if (item.equals("friday") && slot.getFriday() != null && slot.getFriday().split("-")[1].equals("6PM")) {
+						sixPM.set(4,slot.getFriday()+"friday");
+					}
+				}
+			}
+
+		} else{
 			Course course = courseRep.save(new Course(p_courseNameSelected, p_courseDaySelected, p_hoursDaySelected,
 					teacherSelected, courseSelected));
 		}
 
-		for (String course : courseSortedByDay) {
-
-			System.out.println("courseday  " + course);
-
-		}
+//		for (String slot : tenAM) {
+//
+//			System.out.println("yolo  " + slot);
+//
+//		}
 
 		hoursDayList.sort(String::compareToIgnoreCase);
 		for (String hours : hoursDayList)
@@ -372,7 +552,7 @@ public class AdminController {
 		model.addAttribute("courseDaySelected", p_courseDaySelected);
 		model.addAttribute("hoursDaySelected", p_hoursDaySelected);
 		// permit to hidden or not the display
-		model.addAttribute("valueButton", valueButton);
+		model.addAttribute("visualize", visualize);
 		model.addAttribute("textSummary", textSummary);
 		model.addAttribute("profile", message);
 		model.addAttribute("courseListByTeacher", courseListByTeacher);
@@ -380,6 +560,14 @@ public class AdminController {
 		model.addAttribute("courseHoursListByTeacher", courseHoursListByTeacher);
 		model.addAttribute("courseClassNameListByTeacher", courseClassNameListByTeacher);
 		model.addAttribute("courseSortedByDay", courseSortedByDay);
+		model.addAttribute("timeSlotList", timeSlotList);
+		model.addAttribute("heightAM", heightAM);
+		model.addAttribute("tenAM", tenAM);
+		model.addAttribute("noon", noon);
+		model.addAttribute("twoPM", twoPM);
+		model.addAttribute("fourPM", fourPM);
+		model.addAttribute("sixPM", sixPM);
+
 
 		return "timeTableManage";
 	}

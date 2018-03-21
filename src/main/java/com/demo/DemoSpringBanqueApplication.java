@@ -105,4 +105,39 @@ public class DemoSpringBanqueApplication implements CommandLineRunner{
 		// TODO Auto-generated method stub
 		
 	}
+//	<c:when test="${slot.name.equals('10AM')}">
+//	<td>${slot.getMonday()}</td>
+//	<td>${slot.getTuesday()}</td>
+//	<td>${slot.getWednesday()}</td>
+//	<td>${slot.getThursday()}</td>
+//	<td>${slot.getFriday()}</td>
+//</c:when>
+//<c:when test="${slot.name.equals('12AM')}">
+//	<td>${slot.getMonday()}</td>
+//	<td>${slot.getTuesday()}</td>
+//	<td>${slot.getWednesday()}</td>
+//	<td>${slot.getThursday()}</td>
+//	<td>${slot.getFriday()}</td>
+//</c:when>
+//<c:when test="${slot.name.equals('2PM')}">
+//	<td>${slot.getMonday()}</td>
+//	<td>${slot.getTuesday()}</td>
+//	<td>${slot.getWednesday()}</td>
+//	<td>${slot.getThursday()}</td>
+//	<td>${slot.getFriday()}</td>
+//</c:when>
+//<c:when test="${slot.name.equals('4PM')}">
+//	<td>${slot.getMonday()}</td>
+//	<td>${slot.getTuesday()}</td>
+//	<td>${slot.getWednesday()}</td>
+//	<td>${slot.getThursday()}</td>
+//	<td>${slot.getFriday()}</td>
+//</c:when>
+//<c:when test="${slot.name.equals('6PM')}">
+//	<td>${slot.getMonday()}</td>
+//	<td>${slot.getTuesday()}</td>
+//	<td>${slot.getWednesday()}</td>
+//	<td>${slot.getThursday()}</td>
+//	<td>${slot.getFriday()}</td>
+//</c:when>
 }

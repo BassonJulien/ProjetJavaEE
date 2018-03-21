@@ -112,7 +112,7 @@ img {
 
 Elle forme des ingénieurs dans les domaines du génie électrique, de l'électronique, des télécommunications 
 et de l'informatique. Reconnue par l'État depuis 1922 et, habilitée par la Commission des titres d'ingénieur
- (CTI) depuis sa création en 1936 à délivrer le diplôme d'ingénieur, elle est aussi membre de la Conférence des grandes 
+ (CTI) 	depuis sa création en 1936 à délivrer le diplôme d'ingénieur, elle est aussi membre de la Conférence des grandes 
  écoles et fait partie de l'Union des grandes écoles indépendantes.
 
 La CTI a récompensé l'ESME Sudria pour la qualité de son enseignement en lui décernant le label EUR-ACE4

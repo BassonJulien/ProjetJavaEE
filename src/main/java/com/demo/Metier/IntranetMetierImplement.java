@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,6 +66,12 @@ public class IntranetMetierImplement implements IntranetMetierInterface {
 	public List<GroupClass> getGroupClassList() {
 		return classRep.getGroupClassList();
 	}
+	@Override
+	public GroupClass getClassFromId(Long id) {
+		return classRep.findOne(id);
+
+	}
+
 
 	@Override
 	public List<News> getNewsList() {
@@ -130,6 +137,8 @@ public class IntranetMetierImplement implements IntranetMetierInterface {
 		return courseRep.getCourseList();
 	}
 
+
+
 	@Override
 	public List<Course> getCourseListByTeacher(Long teacher) {
 		return courseRep.getCourseListByTeacher(teacher);
@@ -149,9 +158,14 @@ public class IntranetMetierImplement implements IntranetMetierInterface {
 	}
 
 	@Override
-	public List<Object[]> getCourseClass(String id) {
+	public List<Object[]> getCourseClass(Long id) {
 		// TODO Auto-generated method stub
 		return courseRep.getCourseClassList(id);
+	}
+	@Override
+	public List<Course> getCourseListByClass(Long id){
+		return courseRep.getCourseListByClass(id);
+
 	}
 
 	@Override
@@ -179,6 +193,12 @@ public class IntranetMetierImplement implements IntranetMetierInterface {
 
 		
 	}
+	
+	@Override
+	public Student getStudentFromId(Long studentId) {
+		return studentRep.findOne(studentId);
+	}
+
 
 	@Override
 	public List<Mean> getStudentsMeanFromId(Long studentId) {

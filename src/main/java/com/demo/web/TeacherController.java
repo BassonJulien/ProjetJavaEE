@@ -105,7 +105,8 @@ public class TeacherController {
 		model.addAttribute("profile", message);
 
 		List<String> courseClassList = new ArrayList<>();
-		for (Object courseClass[] : interfaceMetier.getCourseClass(/* this.id.toString() */"215"))
+		System.out.println(this.id + "");
+		for (Object courseClass[] : interfaceMetier.getCourseClass(this.id))
 			courseClassList.add(" " + courseClass[0] + " - " + courseClass[1]);
 
 		model.addAttribute("courseClass", courseClassList);
@@ -124,7 +125,7 @@ public class TeacherController {
 		
 
 		List<String> courseClassList = new ArrayList<>();
-		for (Object courseClass1[] : interfaceMetier.getCourseClass(/* this.id.toString() */"215"))
+		for (Object courseClass1[] : interfaceMetier.getCourseClass(this.id))
 			courseClassList.add(" " + courseClass1[0] + " - " + courseClass1[1]);
 
 		
