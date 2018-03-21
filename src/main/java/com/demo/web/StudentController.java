@@ -151,10 +151,10 @@ class StudentController {
 		List<String> courseNameList = new ArrayList<>();
 		List<String> courseDayList = new ArrayList<>();
 		List<String> hoursDayList = new ArrayList<>();
-		List<String> courseNameListByTeacher = new ArrayList<>();
-		List<String> courseDayListByTeacher = new ArrayList<>();
+		List<String> courseNameListByClass = new ArrayList<>();
+		List<String> courseDayListByClass = new ArrayList<>();
 		List<String> courseHoursListByTeacher = new ArrayList<>();
-		List<String> courseClassNameListByTeacher = new ArrayList<>();
+		List<String> courseClassNameListByClass = new ArrayList<>();
 		List<String> courseSortedByDay = new ArrayList<>();
 		List<TimeSlot> timeSlotList = new ArrayList<>();
 
@@ -203,11 +203,11 @@ class StudentController {
 		}
 		// get all course name of the teacher
 		for (Course course : courseListByStudent)
-			courseNameListByTeacher.add(course.getName());
+			courseNameListByClass.add(course.getName());
 
 		// get all course name of the teacher
 		for (Course course : courseListByStudent)
-			courseDayListByTeacher.add(course.getDay());
+			courseDayListByClass.add(course.getDay());
 
 		// get all course name of the teacher
 		for (Course course : courseListByStudent)
@@ -215,7 +215,7 @@ class StudentController {
 
 		// get all course name of the teacher
 		for (Course course : courseListByStudent)
-			courseClassNameListByTeacher.add(course.getClass().getName());
+			courseClassNameListByClass.add(course.getClass().getName());
 
 		courseListByStudent.sort(Comparator.comparing(Course::getHours));
 		
@@ -404,9 +404,9 @@ class StudentController {
 
 		
 
-//		for (String slot : tenAM) {
+//		for (Course slot : courseListByStudent) {
 //
-//			System.out.println("yolo  " + slot);
+//			System.out.println("yolo  " + slot.getName()+ student.getName());
 //
 //		}
 
@@ -423,9 +423,9 @@ class StudentController {
 		model.addAttribute("visualize", visualize);
 		model.addAttribute("profile", message);
 		model.addAttribute("courseListByTeacher", courseListByStudent);
-		model.addAttribute("courseDayListByTeacher", courseDayListByTeacher);
+		model.addAttribute("courseDayListByTeacher", courseDayListByClass);
 		model.addAttribute("courseHoursListByTeacher", courseHoursListByTeacher);
-		model.addAttribute("courseClassNameListByTeacher", courseClassNameListByTeacher);
+		model.addAttribute("courseClassNameListByTeacher", courseClassNameListByClass);
 		model.addAttribute("courseSortedByDay", courseSortedByDay);
 		model.addAttribute("timeSlotList", timeSlotList);
 		model.addAttribute("heightAM", heightAM);

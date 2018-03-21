@@ -206,7 +206,7 @@ public class AdminController {
 		List<String> hoursDayList = new ArrayList<>();
 
 		// hours list
-		hoursDayList.add("8AM");
+		hoursDayList.add("08AM");
 		hoursDayList.add("10AM");
 		hoursDayList.add("12AM");
 		hoursDayList.add("2PM");

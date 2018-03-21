@@ -158,7 +158,7 @@ public class IntranetMetierImplement implements IntranetMetierInterface {
 	}
 
 	@Override
-	public List<Object[]> getCourseClass(String id) {
+	public List<Object[]> getCourseClass(Long id) {
 		// TODO Auto-generated method stub
 		return courseRep.getCourseClassList(id);
 	}

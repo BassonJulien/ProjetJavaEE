@@ -30,7 +30,7 @@ public interface IntranetMetierInterface {
 	List<Teacher> getTeacherList();
 	List<Course> getCourseList(); 
 	List<Course> getCourseListByTeacher(Long teacher); 
-	public List<Object[]> getCourseClass(String id);
+	public List<Object[]> getCourseClass(Long id);
 	public List<Object[]> getStudentFromClassName();
 	public Course getCourseFromName(String courseName);
 	public List<Course> getCourseListByClass(Long id);

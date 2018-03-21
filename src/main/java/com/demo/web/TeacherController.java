@@ -65,7 +65,6 @@ public class TeacherController {
 
 			}
 		}
-
 		List<News> newsList = new ArrayList<>();
 		for (News news : interfaceMetier.getLatestNewsList())
 			newsList.add(news);
@@ -105,11 +104,11 @@ public class TeacherController {
 		model.addAttribute("markValidator", new NewMarkValidator());
 
 		List<String> courseClassList = new ArrayList<>();
-		for (Object courseClass[] : interfaceMetier.getCourseClass("215"))
+		for (Object courseClass[] : interfaceMetier.getCourseClass(this.id))
 			courseClassList.add(" "+courseClass[0] + " - " + courseClass[1]);
 
 		List<String> courseClassList1 = new ArrayList<>();
-		for (Object courseClass[] : interfaceMetier.getCourseClass("215"))
+		for (Object courseClass[] : interfaceMetier.getCourseClass(this.id))
 			courseClassList1.add(courseClass[1] + "");
 
 		model.addAttribute("courseClass", courseClassList);
