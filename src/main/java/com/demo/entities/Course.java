@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Course {
 	
+	
+
+
 	private static final long serialVersionUID = 1L;
 
 	@Id @GeneratedValue
@@ -20,25 +23,7 @@ public class Course {
 	private String day;
 	private String hours;
 	
-	public String getDay() {
-		return day;
-	}
-
-
-	public void setDay(String day) {
-		this.day = day;
-	}
-
-
-	public String getHours() {
-		return hours;
-	}
-
-
-	public void setHours(String hours) {
-		this.hours = hours;
-	}
-
+	
 
 	@ManyToOne
 	@JoinColumn(name="teacherId")
@@ -101,6 +86,24 @@ public class Course {
 	public void setMarks(Collection<Mark> marks) {
 		this.marks = marks;
 	}
+	public String getDay() {
+		return day;
+	}
+
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+
+	public String getHours() {
+		return hours;
+	}
+
+
+	public void setHours(String hours) {
+		this.hours = hours;
+	}
 
 
 	public Course(String name, Teacher teacher, GroupClass classCourse) {
@@ -109,6 +112,15 @@ public class Course {
 		this.teacher = teacher;
 		this.classCourse = classCourse;
 	}
+	public Course(String name, String day, String hours, Teacher teacher, GroupClass classCourse) {
+		super();
+		this.name = name;
+		this.day = day;
+		this.hours = hours;
+		this.teacher = teacher;
+		this.classCourse = classCourse;
+	}
+	
 	
 	
 	

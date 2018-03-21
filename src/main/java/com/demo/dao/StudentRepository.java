@@ -18,11 +18,11 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	@Query(value = "SELECT * FROM intranetPortal.student WHERE intranetPortal.student.name=:username LIMIT 1;", nativeQuery=true)
 	public Student getStudentFromUsername(@Param("username") String username); 
 
-	@Query(value = "select student.name  as sname, group_class.name as cname " + 
+	@Query(value = "select student.name  as sname " + 
 			"from student, group_class " + 
-			"where (student.class_id = group_class.class_id) " + 
+			"where (student.class_id = group_class.class_id) and group_class.name=:className " + 
 			" ;", nativeQuery=true)
-	public List<Object[]>  getStudentFromClassName(); 
+	public List<String>  getStudentFromClassName(@Param("className") String className); 
 
 		// TODO Auto-generated method stub
 		//return null;

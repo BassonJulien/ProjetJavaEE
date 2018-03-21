@@ -47,32 +47,39 @@ input[type=submit]:hover {
 
 
 	<div class="form">
-		<form:form method="POST" action="marksManage"
-			modelAttribute="markValidator">
-			<label for="groupClass">course - class</label>
-			<form:select path="courseClass">
-				<form:options type="submit" name="course" items="${courseClass}" />
-			</form:select>
 
+		<form action="marksManage" method="POST">
+
+			<label for="groupClass">course - class</label> 
+			<select name="courseClass" onchange="this.form.submit()">
+				<c:forEach var="item" items="${courseClass}" varStatus="row">
+				<c:choose>
+  					<c:when test="${ empty defaultCourseClass}">
+  						<option value="" selected disabled hidden>Choose here</option>
+					</c:when>
+					
+					<c:otherwise >
+  						<option value="dada" selected disabled hidden>${defaultCourseClass}</option>
+					</c:otherwise>
+					</c:choose>
+					<option value="${item}">${item}</option>
+				</c:forEach>
+			</select> 
 			<label for="groupClass">student - class</label>
+			<select name="student">
+			<c:forEach var="item" items="${studentList}" varStatus="row">
 
-			<form:select path="studentClass">
-				<form:options name="student" items="${studentList}" />
-			</form:select>
+				<option value="${item}">${item}</option>
+			</c:forEach>
+			</select>
 
 
-			<label for="courseClass">Mark(0-20)</label>
-			<form:input path="mark" />
+			<label for="courseClass">Mark(0-20)</label> 
+			<input name="mark" type="text" placeholder="enter a mark between 0 and 20" value="" /> 
 			<input type="submit" value="add mark">
 
 
-
-
-
-
-
-
-		</form:form>
+		</form>
 
 	</div>
 

@@ -24,20 +24,21 @@ import com.demo.dao.MarkRepository;
 import com.demo.entities.*;
 import com.demo.validators.NewMarkValidator;
 
-
 @Controller
 @RequestMapping("teacher")
 
 public class TeacherController {
 	@Autowired
 	private IntranetMetierInterface interfaceMetier;
-	
+
 	@Autowired
 	private MarkRepository markRep;
-	
 
 	public String message = "teacher";
 	public Long id;
+	String classNameNewMark = "";
+	String courseNameNewMark = "";
+
 
 	@RequestMapping("/")
 	public String empty(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -102,64 +103,70 @@ public class TeacherController {
 	@RequestMapping(value = "/marksManage", method = RequestMethod.GET)
 	public String marksManage(Model model) {
 		model.addAttribute("profile", message);
-		model.addAttribute("markValidator", new NewMarkValidator());
 
 		List<String> courseClassList = new ArrayList<>();
-		for (Object courseClass[] : interfaceMetier.getCourseClass(this.id.toString()))
-			courseClassList.add(" "+courseClass[0] + " - " + courseClass[1]);
-
-		List<String> courseClassList1 = new ArrayList<>();
-		for (Object courseClass[] : interfaceMetier.getCourseClass(this.id.toString()))
-			courseClassList1.add(courseClass[1] + "");
+		for (Object courseClass[] : interfaceMetier.getCourseClass(/* this.id.toString() */"215"))
+			courseClassList.add(" " + courseClass[0] + " - " + courseClass[1]);
 
 		model.addAttribute("courseClass", courseClassList);
 
-		List<String> studentList = new ArrayList<>();
-		List<String> classList = new ArrayList<>();
-
-		for (Object student[] : interfaceMetier.getStudentFromClassName()) {
-			studentList.add(" " + student[0] + " - " + student[1]);
-			classList.add(student[1] + "");
-		}
-
-		model.addAttribute("courseClass", courseClassList);
-		model.addAttribute("courseClass1", courseClassList1);
-
-		model.addAttribute("studentList", studentList);
+		model.addAttribute("defaultCourseClass", null);
 
 		return "marksManage";
 	}
 
 	@RequestMapping(value = "/marksManage", method = RequestMethod.POST)
-	public String marksManage(Model model, @Valid @ModelAttribute("markValidator") NewMarkValidator markValidator,
-			BindingResult bindingResult) {
+	public String marksManagePOST(Model model, @ModelAttribute("courseClass") String courseClass,
+			@ModelAttribute("student") String student, @ModelAttribute("mark") String mark,
+			@ModelAttribute("defaultCourseClass") String defaultClass) {
 		// System.out.println(Pattern.matches("-+", markValidator.getCourseClass()));
-		String studentName ="";
-		String courseName="";
-		Matcher m = Pattern.compile(Pattern.quote(" ") + "(.*?)" + Pattern.quote(" -"))
-				.matcher(markValidator.getStudentClass());
-		while (m.find()) {
-			 studentName = m.group(1);
-		}
+		String studentName = "";
 		
-		Matcher m1 = Pattern.compile(Pattern.quote(" ") + "(.*?)" + Pattern.quote(" -"))
-				.matcher(markValidator.getCourseClass());
-		while (m1.find()) {
-			 courseName = m1.group(1);
-		}
-			Student student = interfaceMetier.getStudentFromUsername(studentName);
-			
-			Course course = interfaceMetier.getCourseFromName(courseName);
-			
-			System.out.println("/"+courseName+"/");
 
+		List<String> courseClassList = new ArrayList<>();
+		for (Object courseClass1[] : interfaceMetier.getCourseClass(/* this.id.toString() */"215"))
+			courseClassList.add(" " + courseClass1[0] + " - " + courseClass1[1]);
 
-			
-			interfaceMetier.createMark(student, course, markValidator.getMark());
+		
+		if (mark.equals("")) {
+			model.addAttribute("courseClass", courseClassList);
+
+			classNameNewMark = courseClass.split("-")[1].replaceAll("\\s+", "");
+
+			courseNameNewMark = courseClass.split("-")[0].replaceAll("\\s+", "");
+
+			model.addAttribute("defaultCourseClass", courseClass);
+			List<String> studentList = new ArrayList<>();
+
+			for (String student1 : interfaceMetier.getStudentFromClassName(classNameNewMark))
+				studentList.add(student1);
+
+			model.addAttribute("studentList", studentList);
+
 			model.addAttribute("profile", message);
 
+			return "marksManage";
+		} else {
+
+
+			Student student2 = interfaceMetier.getStudentFromUsername(student);
+			Course course = interfaceMetier.getCourseFromName(courseNameNewMark);
+			System.out.println("/"+ courseNameNewMark +"/");
+
+			interfaceMetier.createMark(student2, course, Integer.parseInt(mark));
+
+			model.addAttribute("profile", message);
+
+			
+			List<News> newsList = new ArrayList<>();
+			for (News news : interfaceMetier.getLatestNewsList())
+				newsList.add(news);
+
+			model.addAttribute("news", newsList);
+			
 			return "homeLogged";
+
 		}
 
-	
+	}
 }
