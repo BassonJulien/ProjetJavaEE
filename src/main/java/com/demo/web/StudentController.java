@@ -39,6 +39,7 @@ class StudentController {
 		
 		Cookie[] cookies = request.getCookies();
 		String nameCookie = "intranetEsmeCookie";
+		String pathLink = "homeLogged";
 
 		if (!cookies.equals(null)) {
 			Cookie actualCookie = null;
@@ -58,6 +59,9 @@ class StudentController {
 				this.id = Long.valueOf(actualCookie.getValue().split("-")[1]).longValue();
 
 			}
+			else {
+				pathLink =  "redirect:/home";
+			}
 		}
 		
 		
@@ -66,7 +70,7 @@ class StudentController {
 			newsList.add(news);
 		
 		model.addAttribute("news", newsList);
-		return "homeLogged" ; 
+		return pathLink; 
 	}
 		
 	@RequestMapping("/news")

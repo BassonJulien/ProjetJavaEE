@@ -46,9 +46,10 @@ public class TeacherController {
 
 		Cookie[] cookies = request.getCookies();
 		String nameCookie = "intranetEsmeCookie";
+		Cookie actualCookie = null;
+		String pathLink = "homeLogged";
 
 		if (!cookies.equals(null)) {
-			Cookie actualCookie = null;
 			for (int i = 0; i < cookies.length; i++) {
 				String name = cookies[i].getName();
 				String value = cookies[i].getValue();
@@ -62,8 +63,10 @@ public class TeacherController {
 			}
 
 			if (actualCookie != null) {
-				this.id = Long.valueOf(actualCookie.getValue().split("-")[1]).longValue();
-
+				this.id = Long.valueOf(actualCookie.getValue().split("-")[1]).longValue();				
+			}
+			else {
+				pathLink =  "redirect:/home";
 			}
 		}
 
@@ -72,7 +75,7 @@ public class TeacherController {
 			newsList.add(news);
 
 		model.addAttribute("news", newsList);
-		return "homeLogged";
+		return pathLink;
 	}
 
 

@@ -75,7 +75,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/accountManage", method = RequestMethod.POST)
 	String requestInfo(Model model, @Valid @ModelAttribute("userValidator") NewUserFormValidator userValidator,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,@ModelAttribute("groupClass") String className) {
 
 		if (bindingResult.hasErrors()) {
 			return "accountManage";
@@ -85,9 +85,8 @@ public class AdminController {
 		String profile = userValidator.getProfile();
 
 		if (profile.equals("student")) {
-
-			GroupClass class1 = new GroupClass();
-
+			GroupClass class1 = interfaceMetier.getClassFromName(className);
+//			Student student = studentRep.save(new Student(name, username, password, studentClass));
 			interfaceMetier.createStudent(userValidator.getName(), userValidator.getEmail(),
 					userValidator.getPassword(), class1);
 			return "redirect:/admin/home";
@@ -252,7 +251,7 @@ public class AdminController {
 		// id of the teacher selected to find the teacher course list
 		Teacher teacherSelected = interfaceMetier.getTeacherFromName(p_teacherSelected.split(" ")[1]);
 		List<Course> courseListByTeacher = interfaceMetier.getCourseListByTeacher(teacherSelected.getIdTeacher());
-		GroupClass courseSelected = interfaceMetier.getClassFromName(p_classNameSelected);
+		GroupClass classSelected = interfaceMetier.getClassFromName(p_classNameSelected);
 		
 		// initiate variable
 		List<Teacher> teachers = interfaceMetier.getTeacherList();
@@ -517,7 +516,7 @@ public class AdminController {
 
 		} else{
 			Course course = courseRep.save(new Course(p_courseNameSelected, p_courseDaySelected, p_hoursDaySelected,
-					teacherSelected, courseSelected));
+					teacherSelected, classSelected));
 		}
 
 //		for (String slot : tenAM) {

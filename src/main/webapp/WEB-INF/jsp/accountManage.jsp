@@ -88,7 +88,7 @@ input[type=submit]:hover {
     <form:select path="profile">
       <form:option value="admin">Admin</form:option>
       <form:option value="teacher">Teacher</form:option>
-      <form:option value="strudent">Student</form:option>
+      <form:option value="student">Student</form:option>
     </form:select>
     
     <label for="groupClass">GroupClass</label>

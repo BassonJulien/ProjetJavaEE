@@ -219,11 +219,11 @@ public class IntranetController {
 		
 		Mark mark = markRep.save(new Mark(student1, course1, 5));
 		
-		
 
 		return "redirect:/home";
 
 	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		Cookie[] cookies = request.getCookies();
