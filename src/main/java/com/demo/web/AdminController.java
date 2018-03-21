@@ -40,7 +40,7 @@ public class AdminController {
 	@Autowired
 	private CourseRepository courseRep;
 
-	@RequestMapping("/")
+	@RequestMapping(value={"/home", "/"})
 	public String empty(Model model) {
 		model.addAttribute("profile", message);
 		List<News> newsList = new ArrayList<>();
@@ -49,17 +49,6 @@ public class AdminController {
 
 		model.addAttribute("news", newsList);
 
-		return "homeLogged";
-	}
-
-	@RequestMapping("/home")
-	public String home(Model model) {
-		model.addAttribute("profile", message);
-		List<News> newsList = new ArrayList<>();
-		for (News news : interfaceMetier.getLatestNewsList())
-			newsList.add(news);
-
-		model.addAttribute("news", newsList);
 		return "homeLogged";
 	}
 

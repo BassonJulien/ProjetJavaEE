@@ -40,7 +40,7 @@ public class TeacherController {
 	String courseNameNewMark = "";
 
 
-	@RequestMapping("/")
+	@RequestMapping(value={"/home", "/"})
 	public String empty(Model model, HttpServletRequest request, HttpServletResponse response) {
 		model.addAttribute("profile", message);
 
@@ -75,18 +75,7 @@ public class TeacherController {
 		return "homeLogged";
 	}
 
-	@RequestMapping("/home")
-	public String home(Model model) {
-		model.addAttribute("profile", message);
 
-		List<News> newsList = new ArrayList<>();
-		for (News news : interfaceMetier.getLatestNewsList())
-			newsList.add(news);
-
-		model.addAttribute("news", newsList);
-
-		return "homeLogged";
-	}
 
 	@RequestMapping("/news")
 	public String news(Model model) {

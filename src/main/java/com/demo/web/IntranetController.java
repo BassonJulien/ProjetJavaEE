@@ -18,13 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.Metier.IntranetMetierInterface;
-import com.demo.dao.AdminRepository;
-import com.demo.dao.ClassRepository;
-import com.demo.dao.CourseRepository;
-import com.demo.dao.MarkRepository;
-import com.demo.dao.NewsRepository;
-import com.demo.dao.StudentRepository;
-import com.demo.dao.TeacherRepository;
+import com.demo.dao.*;
 import com.demo.entities.*;
 
 @Controller
@@ -46,7 +40,7 @@ public class IntranetController {
 	private MarkRepository markRep;
 	@Autowired
 	private IntranetMetierInterface metierInterface;
-	@RequestMapping("/")
+	@RequestMapping(value={"/home", "/"})
 	public String empty(Model model, HttpServletRequest request, HttpServletResponse response) {
 		model.addAttribute("profile", message);
 		Cookie[] cookies = request.getCookies();
@@ -87,21 +81,7 @@ public class IntranetController {
 		return pathLink;
 	}
 
-	@RequestMapping("/home")
-	public String home(Model model) {
-		
-		List<News> newsList = new ArrayList<>();
-		for (News news : metierInterface.getLatestNewsList())
-			newsList.add(news);
-		
-		model.addAttribute("news", newsList);
-
-		model.addAttribute("profile", message);
-		return "homeUnlogged";
-	}
-
-
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value={"/home", "/"}, method = RequestMethod.POST)
 	public String postLoginForm(@ModelAttribute("student") Student user, @ModelAttribute("profile") String profile,
 			HttpServletRequest request, HttpServletResponse response,Model model) {
 		Cookie[] cookies = request.getCookies();

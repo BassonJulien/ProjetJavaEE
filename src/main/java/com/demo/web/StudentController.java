@@ -17,13 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.demo.Metier.IntranetMetierInterface;
 import com.demo.dao.CourseRepository;
-import com.demo.entities.Course;
-import com.demo.entities.GroupClass;
-import com.demo.entities.News;
-import com.demo.entities.Student;
-import com.demo.entities.Teacher;
-import com.demo.staticClasses.Mean;
-import com.demo.staticClasses.TimeSlot;
+import com.demo.entities.*;
+import com.demo.staticClasses.*;
+
 
 @Controller
 @RequestMapping("student")
@@ -36,7 +32,7 @@ class StudentController {
 	
 	public String message = "student";
 	public Long id;
-	@RequestMapping("/")
+	@RequestMapping(value={"/home", "/"})
 	public String empty(Model model , HttpServletRequest request, HttpServletResponse response)
 	{
 		model.addAttribute("profile", message) ;
@@ -73,42 +69,6 @@ class StudentController {
 		return "homeLogged" ; 
 	}
 		
-	@RequestMapping("/home")
-	public String home(Model model , HttpServletRequest request, HttpServletResponse response)
-	{
-		model.addAttribute("profile", message) ;
-		
-		Cookie[] cookies = request.getCookies();
-		String nameCookie = "intranetEsmeCookie";
-
-		if (!cookies.equals(null)) {
-			Cookie actualCookie = null;
-			for (int i = 0; i < cookies.length; i++) {
-				String name = cookies[i].getName();
-				String value = cookies[i].getValue();
-				// Cookie recherché : partage dans l’objet request
-				if (name.equals(nameCookie)) {
-					System.out.println("get cookie" + name);
-					actualCookie = cookies[i];
-					// pathLink =
-					break;
-				}
-			}
-
-			if (actualCookie != null) {
-				this.id = Long.valueOf(actualCookie.getValue().split("-")[1]).longValue();
-
-			}
-		}
-		List<News> newsList = new ArrayList<>();
-		for (News news : interfaceMetier.getLatestNewsList())
-			newsList.add(news);
-		
-		model.addAttribute("news", newsList);
-		return "homeLogged" ; 
-	}
-	
-	
 	@RequestMapping("/news")
 	public String news(Model model )
 	{
